@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Garage20.Models.Fordon>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Typ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Färg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Märke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AntalHjul)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Typ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Färg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Märke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AntalHjul)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RegNr }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RegNr }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RegNr })
+        </td>
+    </tr>
+}
+
+</table>
