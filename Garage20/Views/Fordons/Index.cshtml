@@ -7,7 +7,7 @@
 <h2>Garage 2.0</h2>
 
 <p>
-    @Html.ActionLink("Parkera fordon", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -15,21 +15,11 @@
             @Html.DisplayNameFor(model => model.RegNr)
         </th>
         <th>
-           
             @Html.DisplayNameFor(model => model.Typ)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Färg)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Märke)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modell)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AntalHjul)
-        </th>*@
         <th></th>
     </tr>
 
@@ -39,25 +29,15 @@
             @Html.DisplayFor(modelItem => item.RegNr)
         </td>
         <td>
-            
             @Html.DisplayFor(modelItem => item.Typ)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Färg)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Märke)
-        </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Modell)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AntalHjul)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RegNr }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RegNr }) |
-            @Html.ActionLink("Hämtar ut", "Delete", new { id=item.RegNr })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

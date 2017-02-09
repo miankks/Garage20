@@ -17,7 +17,7 @@ namespace Garage20.Models
 
     public class Fordon
     {
-        [Key]
+        public int Id { get; set; }
         public string RegNr { get; set; }
         public Typ Typ { get; set; }
         public string Färg { get; set; }

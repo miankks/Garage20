@@ -22,7 +22,7 @@ namespace Garage20.Controllers
         }
 
         // GET: Fordons/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -60,7 +60,7 @@ namespace Garage20.Controllers
         }
 
         // GET: Fordons/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -79,7 +79,7 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RegNr,Typ,Färg,Märke,Modell,AntalHjul")] Fordon fordon)
+        public ActionResult Edit([Bind(Include = "Id,RegNr,Typ,Färg,Märke,Modell,AntalHjul")] Fordon fordon)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Garage20.Controllers
         }
 
         // GET: Fordons/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -108,7 +108,7 @@ namespace Garage20.Controllers
         // POST: Fordons/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             Fordon fordon = db.Fordons.Find(id);
             db.Fordons.Remove(fordon);
