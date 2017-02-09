@@ -23,6 +23,7 @@ namespace Garage20.Models
         public string Färg { get; set; }
         public string Märke { get; set; }
         public string Modell { get; set; }
+        [Range(1, 30)]
         public int AntalHjul { get; set; }
     }
 }

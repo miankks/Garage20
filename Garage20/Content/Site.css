@@ -27,3 +27,13 @@ textarea {
     background-color: burlywood;
     border-color: black;
 }
+
+    .navbar-inverse .navbar-brand {
+        color: black;
+    }
+
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+
+}
+
