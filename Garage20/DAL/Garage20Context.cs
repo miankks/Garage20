@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Garage20.Models;
 
 namespace Garage20.DAL
 {
@@ -19,6 +20,6 @@ namespace Garage20.DAL
         {
         }
 
-        public System.Data.Entity.DbSet<Garage20.Models.Fordon> Fordons { get; set; }
+        public DbSet<Fordon> Fordons { get; set; }
     }
 }
