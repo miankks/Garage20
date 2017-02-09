@@ -18,10 +18,18 @@
         @Html.HiddenFor(model => model.RegNr)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.RegNr, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RegNr, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RegNr, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.Typ, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Typ, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Typ, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.Typ, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.Typ, new { htmlAttributes = new { @class = "form-control" } })*@
+                @*@Html.ValidationMessageFor(model => model.Typ, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
