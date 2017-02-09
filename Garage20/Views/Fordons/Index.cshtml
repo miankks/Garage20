@@ -20,15 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Färg)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Märke)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modell)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AntalHjul)
-        </th>
         <th></th>
     </tr>
 
@@ -42,15 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Färg)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Märke)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modell)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AntalHjul)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.RegNr }) |
