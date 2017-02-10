@@ -31,5 +31,7 @@ namespace Garage20.Models
         public string Modell { get; set; }
         [Range(1, 30)]
         public int AntalHjul { get; set; }
+        public DateTime Tid { get; set; }
+        
     }
 }

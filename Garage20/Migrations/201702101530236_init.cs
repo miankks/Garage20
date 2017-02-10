@@ -3,7 +3,7 @@ namespace Garage20.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class regex : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -18,6 +18,7 @@ namespace Garage20.Migrations
                         Märke = c.String(nullable: false),
                         Modell = c.String(nullable: false),
                         AntalHjul = c.Int(nullable: false),
+                        Tid = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
