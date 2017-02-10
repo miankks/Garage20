@@ -34,6 +34,11 @@ textarea {
 
 .navbar-inverse .navbar-nav > li > a {
     color: black;
-
 }
 
+tr:nth-child(2n-1){
+    background-color:lightgray;
+}
+tr:nth-child(2n){
+    background-color:burlywood;
+}

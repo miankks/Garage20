@@ -3,29 +3,37 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h2>Parkering</h2>
+    <p>
+        How well can you drive a car? OK, but how well can you do it online? Parking games are all about dexterity with a mouse or your fingers.
+        Well, that and precise timing. The hand-eye exercises in these games will help you improve reaction time and attention to detail
+        while you play. Park cars in lots, at the airport, or on the beach. Or go bigger and maneuver full-sized buses into tight spaces.
+        How about a monster truck? It's OK if you destroy a little public property in those games. You can also get a bit mischievous.
+    </p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h4>Var God parkera eller hämta ut fordon</h4>
+       
+    </div>
+    <div class="col-md-4">
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <img src="~/Images/carparkingsign.jpg" width="50" height="50" />
+            @Html.ActionLink("Parkera fordon", "Create", "Fordons")
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <img src="~/Images/reflective-parking-lot-signs-exit-right-arrow-l5844-lg.jpg" width="50" height="50" />
+            @Html.ActionLink("Hämta fordon", "Index", "Fordons")
+            
+        </div>
+    }
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+   
 </div>
