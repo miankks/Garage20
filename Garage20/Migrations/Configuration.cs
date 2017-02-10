@@ -10,24 +10,12 @@ namespace Garage20.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Garage20.DAL.Garage20Context";
         }
 
         protected override void Seed(Garage20.DAL.Garage20Context context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
             context.Fordons.AddOrUpdate(
                 new Fordon { RegNr = "BIL111", Typ = Typ.Bil, Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4 },
                 new Fordon { RegNr = "BIL222", Typ = Typ.Bil, Märke = "Volkswagen", Modell = "Golf", Färg = "Grå", AntalHjul = 4 },

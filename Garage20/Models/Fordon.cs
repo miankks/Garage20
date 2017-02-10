@@ -18,11 +18,17 @@ namespace Garage20.Models
     public class Fordon
     {
         public int Id { get; set; }
+        [Range(5,7)]
         public string RegNr { get; set; }
+        [Required]
         public Typ Typ { get; set; }
+        //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string Färg { get; set; }
+        [Required]
         public string Märke { get; set; }
+        [Required]
         public string Modell { get; set; }
+        [Range(1, 30)]
         public int AntalHjul { get; set; }
     }
 }
