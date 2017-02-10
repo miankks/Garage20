@@ -16,8 +16,17 @@ namespace Garage20.Controllers
         private Garage20Context db = new Garage20Context();
 
         // GET: Fordons
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+            var model = from m in db.Fordons
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(s => s.RegNr.Contains(searchString));
+                return View(model);
+            }
+
             return View(db.Fordons.ToList());
         }
 
