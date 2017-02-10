@@ -134,9 +134,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702091458348_inital.cs" />
-    <Compile Include="Migrations\201702091458348_inital.Designer.cs">
-      <DependentUpon>201702091458348_inital.cs</DependentUpon>
+    <Compile Include="Migrations\201702101031256_regex.cs" />
+    <Compile Include="Migrations\201702101031256_regex.Designer.cs">
+      <DependentUpon>201702101031256_regex.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fordon.cs" />
@@ -197,8 +197,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702091458348_inital.resx">
-      <DependentUpon>201702091458348_inital.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702101031256_regex.resx">
+      <DependentUpon>201702101031256_regex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

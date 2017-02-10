@@ -27,11 +27,11 @@ namespace Garage20.Migrations
                 new Fordon { RegNr = "BUS333", Typ = Typ.Buss, Märke = "Mercedes-Benz", Modell = "220", Färg = "Blå", AntalHjul = 6 },
                 new Fordon { RegNr = "BUS444", Typ = Typ.Buss, Märke = "Volvo", Modell = "Testarossa", Färg = "Svart", AntalHjul = 8 },
                 new Fordon { RegNr = "BUS555", Typ = Typ.Buss, Märke = "MAN", Modell = "C4", Färg = "Grön", AntalHjul = 10 },
-                new Fordon { RegNr = "MC1111", Typ = Typ.Motorcykel, Märke = "Yamaha", Modell = "500cc", Färg = "Gul", AntalHjul = 2 },
-                new Fordon { RegNr = "MC2222", Typ = Typ.Motorcykel, Märke = "Honda", Modell = "FCX", Färg = "Röd", AntalHjul = 2 },
-                new Fordon { RegNr = "MC3333", Typ = Typ.Motorcykel, Märke = "Harley-Davidson", Modell = "Softail", Färg = "Blå", AntalHjul = 2 },
-                new Fordon { RegNr = "MC4444", Typ = Typ.Motorcykel, Märke = "Kawasaki", Modell = "ZX-12R", Färg = "Svart", AntalHjul = 2 },
-                new Fordon { RegNr = "MC5555", Typ = Typ.Motorcykel, Märke = "Aprilia", Modell = "RS125", Färg = "Grön", AntalHjul = 3 });
+                new Fordon { RegNr = "MCF111", Typ = Typ.Motorcykel, Märke = "Yamaha", Modell = "500cc", Färg = "Gul", AntalHjul = 2 },
+                new Fordon { RegNr = "MCK222", Typ = Typ.Motorcykel, Märke = "Honda", Modell = "FCX", Färg = "Röd", AntalHjul = 2 },
+                new Fordon { RegNr = "MCG333", Typ = Typ.Motorcykel, Märke = "Harley-Davidson", Modell = "Softail", Färg = "Blå", AntalHjul = 2 },
+                new Fordon { RegNr = "MCH444", Typ = Typ.Motorcykel, Märke = "Kawasaki", Modell = "ZX-12R", Färg = "Svart", AntalHjul = 2 },
+                new Fordon { RegNr = "MCJ555", Typ = Typ.Motorcykel, Märke = "Aprilia", Modell = "RS125", Färg = "Grön", AntalHjul = 3 });
         }
     }
 }

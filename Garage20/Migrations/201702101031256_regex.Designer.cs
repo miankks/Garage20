@@ -7,13 +7,13 @@ namespace Garage20.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class inital : IMigrationMetadata
+    public sealed partial class regex : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(inital));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(regex));
         
         string IMigrationMetadata.Id
         {
-            get { return "201702091458348_inital"; }
+            get { return "201702101031256_regex"; }
         }
         
         string IMigrationMetadata.Source
