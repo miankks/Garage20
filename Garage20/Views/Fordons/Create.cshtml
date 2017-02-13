@@ -7,10 +7,6 @@
 
 <h2>Parkera Fordon</h2>
 
-
-
- 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -30,8 +26,6 @@
             @Html.LabelFor(model => model.Typ, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.Typ, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.EnumDropDownListFor(model => model.Typ, "", new { @class = "text-danger" })*@
-                @*@Html.ValidationMessageFor(model => model.Typ, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -76,7 +70,7 @@
 }
 
 <div>
-    @Html.ActionLink("Tillbaka till garage", "Index")
+    @Html.ActionLink("Tillbaka till Garage 2.0", "Index")
 </div>
 
 @section Scripts {

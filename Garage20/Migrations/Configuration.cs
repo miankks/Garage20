@@ -10,13 +10,13 @@ namespace Garage20.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             ContextKey = "Garage20.DAL.Garage20Context";
         }
 
         protected override void Seed(Garage20.DAL.Garage20Context context)
         {
-            context.Fordons.AddOrUpdate(
+            context.Fordons.AddOrUpdate(x=>x.Id,
                 new Fordon { RegNr = "BIL111", Typ = Typ.Bil, Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4 },
                 new Fordon { RegNr = "BIL222", Typ = Typ.Bil, Märke = "Volkswagen", Modell = "Golf", Färg = "Grå", AntalHjul = 4 },
                 new Fordon { RegNr = "BIL333", Typ = Typ.Bil, Märke = "Mercedes-Benz", Modell = "220", Färg = "Svart", AntalHjul = 4 },

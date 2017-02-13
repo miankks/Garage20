@@ -3,7 +3,7 @@ namespace Garage20.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class regex : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
