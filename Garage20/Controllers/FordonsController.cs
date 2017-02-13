@@ -19,7 +19,7 @@ namespace Garage20.Controllers
         public ActionResult Index(string searchString)
         {
             var model = from m in db.Fordons
-                         select m;
+                        select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -29,6 +29,44 @@ namespace Garage20.Controllers
 
             return View(db.Fordons.ToList());
         }
+        // [HttpGet]
+        public ActionResult Stats(string typ)
+        {
+            //var  fordon = db.Fordons.Where(s=>s.Typ.ToString()== typ);
+
+            foreach (var item in db.Fordons)
+            {
+                if (item.Typ.ToString() == "Bil")
+                {
+                    int test = Enum.GetValues(typeof(Fordon)).Length;
+                }
+                else if (item.Typ.ToString() == "Buss")
+                {
+                    int test = Enum.GetValues(typeof(Fordon)).Length;
+                }
+                else if (item.Typ.ToString() == "Motorcykel")
+                {
+                    int test = Enum.GetValues(typeof(Fordon)).Length;
+                }
+                else if (item.Typ.ToString() == "Båt")
+                {
+                    int test = Enum.GetValues(typeof(Fordon)).Length;
+                }
+                else if (item.Typ.ToString() == "Flygplan")
+                {
+                    int test = Enum.GetValues(typeof(Fordon)).Length;
+                }
+            }
+
+            return View();
+        }
+        //var  fordon = db.Fordons.Where(s=>s.Typ.ToString()== typ);
+        //if (typ == "Bil")
+        //{
+        //var namesCount = Enum.GetValues(typeof(Typ)).Length;
+        //    return (namesCount);
+        //}
+
 
         // GET: Fordons/Details/5
         public ActionResult Details(int? id)

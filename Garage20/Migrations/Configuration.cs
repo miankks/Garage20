@@ -10,7 +10,7 @@ namespace Garage20.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Garage20.DAL.Garage20Context";
         }
 

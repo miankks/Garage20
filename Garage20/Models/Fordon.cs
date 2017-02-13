@@ -30,12 +30,12 @@ namespace Garage20.Models
         public string Märke { get; set; }
         [Required]
         public string Modell { get; set; }
-        [Range(1, 30)]
+        [Range(0, 30)]
         [DisplayName("Antal Hjul")]
         public int AntalHjul { get; set; }
         [DisplayName("Parkering Tid")]
         public DateTime Tid { get; set; }
-        
+        public int Count { get; set; }
 
     }
 }

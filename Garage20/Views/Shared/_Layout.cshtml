@@ -18,6 +18,7 @@
                 </button>
                 @Html.ActionLink("Garage 2.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Fordon", "Index", "Fordons", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("FordonStatistik", "Stats", "Fordons", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -33,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Joachim och Bilal</p>
+            <p>&copy; @DateTime.Now.Year - Joachim, Dildar och Bilal</p>
         </footer>
     </div>
 

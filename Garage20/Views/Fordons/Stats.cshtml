@@ -1,0 +1,53 @@
+﻿@model Garage20.Models.Fordon
+
+@{
+    ViewBag.Title = "Stats";
+}
+
+<h2>Stats</h2>
+
+<div>
+    <h4>Fordon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Typ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Typ)
+        </dd>
+
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.AntalHjul)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AntalHjul)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
