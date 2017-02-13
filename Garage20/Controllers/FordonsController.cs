@@ -60,6 +60,7 @@ namespace Garage20.Controllers
         {
             if (ModelState.IsValid)
             {
+                fordon.Tid = DateTime.Now;
                 db.Fordons.Add(fordon);
                 db.SaveChanges();
                 return RedirectToAction("Index");

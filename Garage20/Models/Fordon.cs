@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -30,8 +31,11 @@ namespace Garage20.Models
         [Required]
         public string Modell { get; set; }
         [Range(1, 30)]
+        [DisplayName("Antal Hjul")]
         public int AntalHjul { get; set; }
+        [DisplayName("Parkering Tid")]
         public DateTime Tid { get; set; }
         
+
     }
 }
