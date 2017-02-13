@@ -134,9 +134,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702101331437_init.cs" />
-    <Compile Include="Migrations\201702101331437_init.Designer.cs">
-      <DependentUpon>201702101331437_init.cs</DependentUpon>
+    <Compile Include="Migrations\201702101530236_init.cs" />
+    <Compile Include="Migrations\201702101530236_init.Designer.cs">
+      <DependentUpon>201702101530236_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fordon.cs" />
@@ -184,6 +184,7 @@
     <Content Include="Views\Fordons\Details.cshtml" />
     <Content Include="Views\Fordons\Edit.cshtml" />
     <Content Include="Views\Fordons\Index.cshtml" />
+    <Content Include="Views\Fordons\Kvito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -197,8 +198,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702101331437_init.resx">
-      <DependentUpon>201702101331437_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702101530236_init.resx">
+      <DependentUpon>201702101530236_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

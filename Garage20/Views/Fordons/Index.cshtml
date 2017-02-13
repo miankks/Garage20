@@ -31,6 +31,9 @@
             @*@Html.DisplayNameFor(model => model.Färg)*@
             @Html.ActionLink("Färg", "Index", new { sortOrder = ViewBag.FärgSortParm, searchString = "" })
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tid)
+        </th>
         <th></th>
     </tr>
 
@@ -45,6 +48,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Färg)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tid)
+        </td>
+
         <td>
             @Html.ActionLink("Redigera fordon", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Detaljvy för fordon", "Details", new { id = item.Id }) |

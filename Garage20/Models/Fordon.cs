@@ -34,5 +34,9 @@ namespace Garage20.Models
         [Range(1, 30)]
         [DisplayName("Antal hjul")]
         public int AntalHjul { get; set; }
+        [DisplayName("Parkering Tid")]
+        public DateTime Tid { get; set; }
+        
+
     }
 }

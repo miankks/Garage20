@@ -108,6 +108,7 @@ namespace Garage20.Controllers
         {
             if (ModelState.IsValid)
             {
+                fordon.Tid = DateTime.Now;
                 db.Fordons.Add(fordon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -167,11 +168,28 @@ namespace Garage20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
+            
             Fordon fordon = db.Fordons.Find(id);
+            Fordon tempfordon = fordon;
             db.Fordons.Remove(fordon);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Kvito",tempfordon);
         }
+
+        public ActionResult Kvito(Fordon tempfordon)
+        {
+            TimeSpan currenttime = (DateTime.Now - tempfordon.Tid);
+            var price = currenttime.TotalHours * 60;
+            ViewBag.currenttime = Convert.ToInt32(currenttime.TotalHours);
+            ViewBag.price = Convert.ToInt32(price);
+            return View(tempfordon);
+        }
+
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {
