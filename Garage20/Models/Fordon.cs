@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -20,6 +21,7 @@ namespace Garage20.Models
         public int Id { get; set; }
         //[Range(5,7)]
         [RegularExpression(pattern:"^[a-zA-Z]{3}[0-9]{3}", ErrorMessage = "Bara tre Bokstavar och 3 ")]
+        [DisplayName("Registreringsnummer")]
         public string RegNr { get; set; }
         [Required]
         public Typ Typ { get; set; }
@@ -30,6 +32,7 @@ namespace Garage20.Models
         [Required]
         public string Modell { get; set; }
         [Range(1, 30)]
+        [DisplayName("Antal hjul")]
         public int AntalHjul { get; set; }
     }
 }

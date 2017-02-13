@@ -16,7 +16,7 @@ namespace Garage20.Controllers
         private Garage20Context db = new Garage20Context();
 
         // GET: Fordons
-        public ActionResult Index(string searchString)
+        /*public ActionResult Index(string searchString)
         {
             var model = from m in db.Fordons
                          select m;
@@ -28,6 +28,54 @@ namespace Garage20.Controllers
             }
 
             return View(db.Fordons.ToList());
+        }*/
+
+        public ActionResult Index(string sortOrder, string searchString)
+        {
+            ViewBag.RegNrSortParm = sortOrder == "RegNr" ? "RegNr_desc" : "RegNr";
+            ViewBag.TypSortParm = sortOrder == "Typ" ? "Typ_desc" : "Typ";
+            ViewBag.FärgSortParm = sortOrder == "Färg" ? "Färg_desc" : "Färg";
+            /*var fordon = from f in db.Fordons
+                           select f;*/
+            IQueryable<Fordon> fordon = db.Fordons;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                fordon = fordon.Where(s => s.RegNr.Contains(searchString) 
+                                        || s.Färg.Contains(searchString)
+                                        || s.Modell.Contains(searchString)
+                                        || s.Märke.Contains(searchString)
+                                        || s.AntalHjul.ToString().Contains(searchString)
+                                        || s.Typ.ToString().Contains(searchString)
+                                        );
+                return View(fordon);
+            }
+
+            switch (sortOrder)
+            {
+                case "RegNr":
+                    fordon = fordon.OrderBy(f => f.RegNr);
+                    break;
+                case "RegNr_desc":
+                    fordon = fordon.OrderByDescending(f => f.RegNr);
+                    break;
+                case "Typ":
+                    fordon = fordon.OrderBy(f => f.Typ);
+                    break;
+                case "Typ_desc":
+                    fordon = fordon.OrderByDescending(f => f.Typ);
+                    break;
+                case "Färg":
+                    fordon = fordon.OrderBy(f => f.Färg);
+                    break;
+                case "Färg_desc":
+                    fordon = fordon.OrderByDescending(f => f.Färg);
+                    break;
+                default:
+                    break;
+            }
+
+            return View(fordon.ToList());
         }
 
         // GET: Fordons/Details/5
