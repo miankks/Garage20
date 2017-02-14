@@ -225,7 +225,58 @@ namespace Garage20.Controllers
             ViewBag.price = Convert.ToInt32(price);
             return View(tempfordon);
         }
+        // [HttpGet]
+        public ActionResult Stats()
+        {
+            ViewBag.bil = 0;
+            ViewBag.bus = 0;
+            ViewBag.Motorcykel = 0;
+            ViewBag.Båt = 0;
+            ViewBag.Flygplan = 0;
+            foreach (var item in db.Fordons)
+            {
+                switch (item.Typ.ToString())
+                {
+                    case "Bil":
+                        ViewBag.bil += 1;
+                        break;
+                    case "Buss":
+                        ViewBag.bus += 1;
+                        break;
+                    case "Motorcykel":
+                        ViewBag.Motorcykel += 1;
+                        break;
+                    case "Båt":
+                        ViewBag.Båt += 1;
+                        break;
+                    case "Flygplan":
+                        ViewBag.Flygplan += 1;
+                        break;
+                    default:
+                        break;
+                }
 
+            }
+            ViewBag.TotalHjul = 0;
+
+            foreach (var item in db.Fordons)
+            {
+                ViewBag.TotalHjul = ViewBag.TotalHjul + item.AntalHjul;
+            }
+            ViewBag.TotalTid = 0;
+
+
+            double TotalMinutesOfParking = 0;
+            foreach (var item in db.Fordons)
+            {
+
+                TotalMinutesOfParking = Math.Round(TotalMinutesOfParking + (DateTime.Now - item.Tid).TotalMinutes);
+
+            }
+            ViewBag.count = TotalMinutesOfParking * 1;
+            ViewBag.TotalTid = TotalMinutesOfParking;
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
