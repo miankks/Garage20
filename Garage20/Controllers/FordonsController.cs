@@ -233,24 +233,30 @@ namespace Garage20.Controllers
             ViewBag.Motorcykel = 0;
             ViewBag.Båt = 0;
             ViewBag.Flygplan = 0;
+            ViewBag.totalAntal = 0;
             foreach (var item in db.Fordons)
             {
                 switch (item.Typ.ToString())
                 {
                     case "Bil":
                         ViewBag.bil += 1;
+                        ViewBag.totalAntal += 1;
                         break;
                     case "Buss":
                         ViewBag.bus += 1;
+                        ViewBag.totalAntal += 1;
                         break;
                     case "Motorcykel":
                         ViewBag.Motorcykel += 1;
+                        ViewBag.totalAntal += 1;
                         break;
                     case "Båt":
                         ViewBag.Båt += 1;
+                        ViewBag.totalAntal += 1;
                         break;
                     case "Flygplan":
                         ViewBag.Flygplan += 1;
+                        ViewBag.totalAntal += 1;
                         break;
                     default:
                         break;
