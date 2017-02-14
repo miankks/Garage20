@@ -30,43 +30,47 @@ namespace Garage20.Controllers
             return View(db.Fordons.ToList());
         }
         // [HttpGet]
-        public ActionResult Stats(string typ)
+        public ActionResult Stats()
         {
-            //var  fordon = db.Fordons.Where(s=>s.Typ.ToString()== typ);
+            ViewBag.bil = 0;
+            ViewBag.bus = 0;
+            ViewBag.Motorcykel = 0;
+            ViewBag.Båt = 0;
+            ViewBag.Flygplan = 0;
+            foreach (var item in db.Fordons)
+            {
+                switch (item.Typ.ToString())
+                {
+                    case "Bil":
+                        ViewBag.bil += 1;
+                        break;
+                    case "Buss":
+                        ViewBag.bus += 1;
+                        break;
+                    case "Motorcykel":
+                        ViewBag.Motorcykel += 1;
+                        break;
+                    case "Båt":
+                        ViewBag.Båt += 1;
+                        break;
+                    case "Flygplan":
+                        ViewBag.Flygplan += 1;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            ViewBag.TotalHjul = 0;
 
             foreach (var item in db.Fordons)
             {
-                if (item.Typ.ToString() == "Bil")
-                {
-                    int test = Enum.GetValues(typeof(Fordon)).Length;
-                }
-                else if (item.Typ.ToString() == "Buss")
-                {
-                    int test = Enum.GetValues(typeof(Fordon)).Length;
-                }
-                else if (item.Typ.ToString() == "Motorcykel")
-                {
-                    int test = Enum.GetValues(typeof(Fordon)).Length;
-                }
-                else if (item.Typ.ToString() == "Båt")
-                {
-                    int test = Enum.GetValues(typeof(Fordon)).Length;
-                }
-                else if (item.Typ.ToString() == "Flygplan")
-                {
-                    int test = Enum.GetValues(typeof(Fordon)).Length;
-                }
+                ViewBag.TotalHjul = ViewBag.TotalHjul +item.AntalHjul;
             }
 
-            return View();
-        }
-        //var  fordon = db.Fordons.Where(s=>s.Typ.ToString()== typ);
-        //if (typ == "Bil")
-        //{
-        //var namesCount = Enum.GetValues(typeof(Typ)).Length;
-        //    return (namesCount);
-        //}
 
+                return View();
+        }
 
         // GET: Fordons/Details/5
         public ActionResult Details(int? id)

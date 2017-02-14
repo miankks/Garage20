@@ -1,53 +1,67 @@
 ﻿@model Garage20.Models.Fordon
 
+
 @{
-    ViewBag.Title = "Stats";
+    ViewBag.Title = "Statistic";
 }
 
-<h2>Stats</h2>
+<h2>Detaljer för fordon</h2>
 
 <div>
-    <h4>Fordon</h4>
     <hr />
     <dl class="dl-horizontal">
-        
         <dt>
-            @Html.DisplayNameFor(model => model.Typ)
+            Total Bil :
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Typ)
+            @ViewBag.bil
         </dd>
-
-       
         <dt>
-            @Html.DisplayNameFor(model => model.AntalHjul)
+            Total Buses
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AntalHjul)
+            @ViewBag.bus
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Tid)
+            Total Motorcykel :
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Tid)
+            @ViewBag.Motorcykel
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Count)
+            Total Båt :
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Count)
+            @ViewBag.Båt
         </dd>
+        <dt>
+            Total Flygplan :
+        </dt>
 
+        <dd>
+            @ViewBag.Flygplan
+        </dd>
     </dl>
 </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Total Antal hjul i garaget :
+        </dt>
+
+        <dd>
+            @ViewBag.TotalHjul
+        </dd>
+    </dl>
+</div>
+<hr />
+<div>
+    @Html.ActionLink("Tillbaka till Garage 2.0", "Index")
+</div>
