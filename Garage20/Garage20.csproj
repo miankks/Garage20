@@ -138,6 +138,10 @@
     <Compile Include="Migrations\201702101530236_init.Designer.cs">
       <DependentUpon>201702101530236_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702141310226_init1.cs" />
+    <Compile Include="Migrations\201702141310226_init1.Designer.cs">
+      <DependentUpon>201702141310226_init1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fordon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,6 +206,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702101530236_init.resx">
       <DependentUpon>201702101530236_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702141310226_init1.resx">
+      <DependentUpon>201702141310226_init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
