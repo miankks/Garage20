@@ -19,24 +19,35 @@ namespace Garage20.Models
     public class Fordon
     {
         public int Id { get; set; }
-        //[Range(5,7)]
-        [RegularExpression(pattern:"^[a-zA-Z]{3}[0-9]{3}", ErrorMessage = "Bara tre Bokstavar och 3 ")]
+
+        [Required(ErrorMessage = "Fältet Registreringsnummer krävs!")]
+        [RegularExpression(pattern: "^[a-zA-Z]{3}[0-9]{3}", ErrorMessage = "Mata in 3 bokstäver och 3 siffror!")]
         [DisplayName("Registreringsnummer")]
         public string RegNr { get; set; }
-        [Required]
+
         public Typ Typ { get; set; }
-        [RegularExpression(@"^[a-zA-ZåäöÅÄÖ]+$", ErrorMessage = "Use letters only please")]
+
+        [Required(ErrorMessage = "Fältet Färg krävs!")]
+        [RegularExpression(@"^[a-zA-ZåäöÅÄÖ\-\s*]+$", ErrorMessage = "Mata in endast bokstäver!")]
+        [StringLength(30, ErrorMessage = "Fältet Färg kan inte vara längre än 30 tecken!")]
         public string Färg { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Fältet Märke krävs!")]
+        [RegularExpression(@"^[a-zA-ZåäöÅÄÖ\-\s*]+$", ErrorMessage = "Mata in endast bokstäver!")]
+        [StringLength(30, ErrorMessage = "Fältet Märke kan inte vara längre än 30 tecken!")]
         public string Märke { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Fältet Modell krävs!")]
+        [RegularExpression(@"^[a-zA-ZåäöÅÄÖ0-9\-\s*]+$", ErrorMessage = "Mata in endast bokstäver!")]
+        [StringLength(30, ErrorMessage = "Fältet Modell kan inte vara längre än 30 tecken!")]
         public string Modell { get; set; }
-        [Range(1, 30)]
+
+        [Required(ErrorMessage = "Fältet Antal hjul krävs!")]
+        [Range(0, 30)]
         [DisplayName("Antal hjul")]
         public int AntalHjul { get; set; }
-        [DisplayName("Parkering Tid")]
-        public DateTime Tid { get; set; }
-        
 
+        [DisplayName("In-checkningstid")]
+        public DateTime Tid { get; set; }
     }
 }

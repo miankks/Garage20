@@ -182,9 +182,9 @@
     <Content Include="Views\Fordons\Create.cshtml" />
     <Content Include="Views\Fordons\Delete.cshtml" />
     <Content Include="Views\Fordons\Details.cshtml" />
-    <Content Include="Views\Fordons\Edit.cshtml" />
     <Content Include="Views\Fordons\Index.cshtml" />
     <Content Include="Views\Fordons\Kvito.cshtml" />
+    <Content Include="Views\Fordons\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,7 @@
 ﻿@model Garage20.Models.Fordon
 
 <div>
-    <h4>"Kvito"</h4>
+    <h2>Kvitto</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -60,24 +60,29 @@
             @Html.DisplayFor(model => model.Tid)
         </dd>
         <dt>
-            Slut Tid./ Total Hours
+            Ut-checkningstid 
         </dt>
 
         <dd>
             @DateTime.Now
-            /
-            @ViewBag.currenttime
         </dd>
+
         <dt>
-            Pris.
+            Total parkeringsperiod
         </dt>
 
         <dd>
-            @ViewBag.price
+            @ViewBag.currenttime tim  @ViewBag.currentminutes min
+        </dd>
+        <dt>
+            Pris
+        </dt>
+
+        <dd>
+            @ViewBag.price SEK
         </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tillbaka till Garage 2.0", "Index")
 </p>
