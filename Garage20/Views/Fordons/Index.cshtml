@@ -9,8 +9,8 @@
 @using (Html.BeginForm())
 {
     <p>
-        Title: @Html.TextBox("SearchString")
-        <input type="submit" value="Filter" />
+        @Html.TextBox("SearchString")
+        <input type="submit" value="Sök" />
     </p>
 }
 <p>
@@ -20,13 +20,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.RegNr)
+            @*@Html.DisplayNameFor(model => model.RegNr)*@
+            @Html.ActionLink("Registreringsnummer", "Index", new { sortOrder = ViewBag.RegNrSortParm, searchString = "" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Typ)
+            @*@Html.DisplayNameFor(model => model.Typ)*@
+            @Html.ActionLink("Typ", "Index", new { sortOrder = ViewBag.TypSortParm, searchString = "" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Färg)
+            @*@Html.DisplayNameFor(model => model.Färg)*@
+            @Html.ActionLink("Färg", "Index", new { sortOrder = ViewBag.FärgSortParm, searchString = "" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Tid)
@@ -59,9 +62,6 @@
 
 </table>
 
- @Html.ActionLink("Bil", "Stats", new { Typ = "Bil" })|
- @Html.ActionLink("Buss", "Stats", new { Typ = "Buss" }) |
- @Html.ActionLink("Motorcykel", "Stats", new { Typ = "Motorcykel" }) |
- @Html.ActionLink("Båt", "Stats", new { Typ = "Båt" }) |
- @Html.ActionLink("Flygplan", "Stats", new { Typ = "Flygplan" })
-@Html.ActionLink("AntalHjul", "Stats")
+<div>
+    @Html.ActionLink("Tillbaka till Garage 2.0", "Index")
+</div>
