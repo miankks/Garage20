@@ -9,57 +9,86 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Total Bil :
-        </dt>
+    <table class="table">
+        <tr>
+            <th>
+                Total Bil
+            </th>
+            <th>
+                Total Buses
+            </th>
+            <th>
+                Total Motorcykel
+            </th>
+            <th>
+                Total Båt
+            </th>
+            <th>
+                Total Flygplan
+            </th>
+        </tr>
 
-        <dd>
-            @ViewBag.bil
-        </dd>
-        <dt>
-            Total Buses
-        </dt>
 
-        <dd>
-            @ViewBag.bus
-        </dd>
-        <dt>
-            Total Motorcykel :
-        </dt>
+        <tr>
+            <td>
+                @ViewBag.bil
+            </td>
+            <td>
+                @ViewBag.bus
+            </td>
+            <td>
+                @ViewBag.Motorcykel
+            </td>
+            <td>
+                @ViewBag.Båt
+            </td>
 
-        <dd>
-            @ViewBag.Motorcykel
-        </dd>
+            <td>
+                @ViewBag.Flygplan
+            </td>
+        </tr>
+    </table>
 
-        <dt>
-            Total Båt :
-        </dt>
-
-        <dd>
-            @ViewBag.Båt
-        </dd>
-        <dt>
-            Total Flygplan :
-        </dt>
-
-        <dd>
-            @ViewBag.Flygplan
-        </dd>
-    </dl>
 </div>
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Total Antal hjul i garaget :
-        </dt>
+    <table>
+        <tr>
+            <th>
+                Total Antal hjul i garaget
+            </th>
 
-        <dd>
-            @ViewBag.TotalHjul
-        </dd>
-    </dl>
+        </tr>
+        <tr>
+            <td>
+                @ViewBag.TotalHjul
+            </td>
+
+        </tr>
+        <tr>
+            <th>
+                Total Minutes of Parking
+            </th>
+        </tr>
+        <tr>
+
+            <td>
+                @ViewBag.TotalTid
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Total Price / minutes
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @ViewBag.count
+            </td>
+        </tr>
+    </table>
+
 </div>
 <hr />
 <div>

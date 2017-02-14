@@ -15,20 +15,6 @@ namespace Garage20.Controllers
     {
         private Garage20Context db = new Garage20Context();
 
-        // GET: Fordons
-        /*public ActionResult Index(string searchString)
-        {
-            var model = from m in db.Fordons
-                        select m;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                model = model.Where(s => s.RegNr.Contains(searchString));
-                return View(model);
-            }
-
-            return View(db.Fordons.ToList());
-        }*/
 
         public ActionResult Index(string sortOrder, string searchString)
         {
@@ -41,7 +27,7 @@ namespace Garage20.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                fordon = fordon.Where(s => s.RegNr.Contains(searchString) 
+                fordon = fordon.Where(s => s.RegNr.Contains(searchString)
                                         || s.Färg.Contains(searchString)
                                         || s.Modell.Contains(searchString)
                                         || s.Märke.Contains(searchString)
@@ -113,11 +99,31 @@ namespace Garage20.Controllers
 
             foreach (var item in db.Fordons)
             {
-                ViewBag.TotalHjul = ViewBag.TotalHjul +item.AntalHjul;
+                ViewBag.TotalHjul = ViewBag.TotalHjul + item.AntalHjul;
             }
+            ViewBag.TotalTid = 0;
 
+            
+            double TotalMinutesOfParking = 0;
+            foreach (var item in db.Fordons)
+            {
 
-                return View();
+                TotalMinutesOfParking = Math.Round(TotalMinutesOfParking + (DateTime.Now - item.Tid).TotalMinutes);
+
+            }
+            ViewBag.count= TotalMinutesOfParking * 1;
+            ViewBag.TotalTid = TotalMinutesOfParking;
+            return View();
+        }
+
+        public ActionResult Kvito(Fordon tempfordon)
+        {
+            TimeSpan currenttime = (DateTime.Now - tempfordon.Tid);
+            var price = currenttime.TotalHours * 60;
+            ViewBag.currenttime = Convert.ToInt32(currenttime.TotalHours);
+            ViewBag.currentminutes = Convert.ToInt32(currenttime.TotalMinutes);
+            ViewBag.price = Convert.ToInt32(price);
+            return View(tempfordon);
         }
 
         // GET: Fordons/Details/5
@@ -196,7 +202,7 @@ namespace Garage20.Controllers
                 fordon.Märke = fordon.Märke.ToLower();
                 fordon.Märke = fordon.Märke.First().ToString().ToUpper() + fordon.Märke.Substring(1); //Stor första bokstav.
                 fordon.Modell = fordon.Modell.ToUpper();
-                
+
                 db.Entry(fordon).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -224,23 +230,14 @@ namespace Garage20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            
+
             Fordon fordon = db.Fordons.Find(id);
             Fordon tempfordon = fordon;
             db.Fordons.Remove(fordon);
             db.SaveChanges();
-            return RedirectToAction("Kvito",tempfordon);
+            return RedirectToAction("Kvito", tempfordon);
         }
 
-        public ActionResult Kvito(Fordon tempfordon)
-        {
-            TimeSpan currenttime = (DateTime.Now - tempfordon.Tid);
-            var price = currenttime.TotalHours * 60;
-            ViewBag.currenttime = Convert.ToInt32(currenttime.TotalHours);
-            ViewBag.currentminutes = Convert.ToInt32(currenttime.TotalMinutes);
-            ViewBag.price = Convert.ToInt32(price);
-            return View(tempfordon);
-        }
 
 
 
