@@ -32,7 +32,8 @@
             @Html.ActionLink("Färg", "Index", new { sortOrder = ViewBag.FärgSortParm, searchString = "" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tid)
+            @*@Html.DisplayNameFor(model => model.Tid)*@
+            @Html.ActionLink("Tid", "Index", new { sortOrder = ViewBag.TidSortParm, searchString = "" })
         </th>
         <th></th>
     </tr>

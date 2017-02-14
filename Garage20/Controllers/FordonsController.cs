@@ -35,6 +35,7 @@ namespace Garage20.Controllers
             ViewBag.RegNrSortParm = sortOrder == "RegNr" ? "RegNr_desc" : "RegNr";
             ViewBag.TypSortParm = sortOrder == "Typ" ? "Typ_desc" : "Typ";
             ViewBag.FärgSortParm = sortOrder == "Färg" ? "Färg_desc" : "Färg";
+            ViewBag.TidSortParm = sortOrder == "Tid" ? "Tid_desc" : "Tid";
             /*var fordon = from f in db.Fordons
                            select f;*/
             IQueryable<Fordon> fordon = db.Fordons;
@@ -47,6 +48,7 @@ namespace Garage20.Controllers
                                         || s.Märke.Contains(searchString)
                                         || s.AntalHjul.ToString().Contains(searchString)
                                         || s.Typ.ToString().Contains(searchString)
+                                        || s.Tid.ToString().Contains(searchString)
                                         );
                 return View(fordon);
             }
@@ -70,6 +72,12 @@ namespace Garage20.Controllers
                     break;
                 case "Färg_desc":
                     fordon = fordon.OrderByDescending(f => f.Färg);
+                    break;
+                case "Tid":
+                    fordon = fordon.OrderBy(f => f.Tid);
+                    break;
+                case "Tid_desc":
+                    fordon = fordon.OrderByDescending(f => f.Tid);
                     break;
                 default:
                     break;
