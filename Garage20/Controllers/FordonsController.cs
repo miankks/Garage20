@@ -106,22 +106,33 @@ namespace Garage20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RegNr,Typ,Färg,Märke,Modell,AntalHjul")] Fordon fordon)
         {
-            if (ModelState.IsValid)
+            var findFordon = from m in db.Fordons
+                             where fordon.RegNr == m.RegNr
+                             select m.RegNr;
+            if (findFordon.Count() == 0)
             {
-                fordon.Tid = DateTime.Now;
-                fordon.RegNr = fordon.RegNr.ToUpper();
-                fordon.Färg = fordon.Färg.ToLower();
-                fordon.Färg = fordon.Färg.First().ToString().ToUpper() + fordon.Färg.Substring(1); //Stor första bokstav.
-                fordon.Märke = fordon.Märke.ToLower();
-                fordon.Märke = fordon.Märke.First().ToString().ToUpper() + fordon.Märke.Substring(1); //Stor första bokstav.
-                fordon.Modell = fordon.Modell.ToUpper();
+                if (ModelState.IsValid)
+                {
+                    fordon.Tid = DateTime.Now;
+                    fordon.RegNr = fordon.RegNr.ToUpper();
+                    fordon.Färg = fordon.Färg.ToLower();
+                    fordon.Färg = fordon.Färg.First().ToString().ToUpper() + fordon.Färg.Substring(1); //Stor första bokstav.
+                    fordon.Märke = fordon.Märke.ToLower();
+                    fordon.Märke = fordon.Märke.First().ToString().ToUpper() + fordon.Märke.Substring(1); //Stor första bokstav.
+                    fordon.Modell = fordon.Modell.ToUpper();
 
-                db.Fordons.Add(fordon);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    db.Fordons.Add(fordon);
+                    db.SaveChanges();
+                    ViewBag.error = "";
+                    return RedirectToAction("Index");
+                }
             }
+            else
+            {
+                ViewBag.error = "Registration Number Exist";
+            }
+                return View(fordon);
 
-            return View(fordon);
         }
 
         // GET: Fordons/Edit/5
