@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Garage20.DAL;
 using Garage20.Models;
+using System.Globalization;
+using System.Threading;
 
 namespace Garage20.Controllers
 {
@@ -62,10 +64,15 @@ namespace Garage20.Controllers
                     fordon = fordon.OrderByDescending(f => f.RegNr);
                     break;
                 case "Typ":
-                    fordon = fordon.OrderBy(f => f.Typ);
+                    fordon = fordon.OrderBy(f => f.Typ.ToString());
                     break;
                 case "Typ_desc":
-                    fordon = fordon.OrderByDescending(f => f.Typ);
+                    //Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
+                    //CultureInfo svSE = new CultureInfo("sv-SE");
+                    
+                    //fordon = fordon.OrderByDescending(f => f.Typ.ToString(), StringComparer.Create(svSE, false));
+
+                    fordon = fordon.OrderByDescending(f => f.Typ.ToString());
                     break;
                 case "Färg":
                     fordon = fordon.OrderBy(f => f.Färg);
@@ -137,7 +144,7 @@ namespace Garage20.Controllers
             }
             else
             {
-                ViewBag.error = "Registration Number Exist";
+                ViewBag.error = "Registreringsnumret finns redan i garaget!";
             }
                 return View(fordon);
 
