@@ -202,17 +202,11 @@ namespace Garage20.Controllers
         {
             TimeSpan currenttime = (DateTime.Now - tempfordon.Tid);
             var price = currenttime.TotalHours * 60;
-            ViewBag.currenttime = Convert.ToInt32(currenttime.TotalHours);
-            ViewBag.currentminutes = Convert.ToInt32(currenttime.TotalMinutes);
+            ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
+            ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
             ViewBag.price = Convert.ToInt32(price);
             return View(tempfordon);
         }
-
-
-
-
-
-
 
         protected override void Dispose(bool disposing)
         {
