@@ -38,18 +38,18 @@ namespace Garage20.Controllers
             ViewBag.TypSortParm = sortOrder == "Typ" ? "Typ_desc" : "Typ";
             ViewBag.FärgSortParm = sortOrder == "Färg" ? "Färg_desc" : "Färg";
             ViewBag.TidSortParm = sortOrder == "Tid" ? "Tid_desc" : "Tid";
-            /*var fordon = from f in db.Fordons
-                           select f;*/
-            IQueryable<Fordon> fordon = db.Fordons;
+            var fordon = from f in db.Fordons
+                         select f;
+            //IQueryable<Fordon> fordon = db.Fordons;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                fordon = fordon.Where(s => s.RegNr.Contains(searchString) 
+                fordon = fordon.Where(s => s.RegNr.Contains(searchString)
                                         || s.Färg.Contains(searchString)
                                         || s.Modell.Contains(searchString)
                                         || s.Märke.Contains(searchString)
                                         || s.AntalHjul.ToString().Contains(searchString)
-                                        || s.Typ.ToString().Contains(searchString)
+                                        || s.Fordonstyper.Typ.Contains(searchString)
                                         || s.Tid.ToString().Contains(searchString)
                                         );
                 return View(fordon);
@@ -64,15 +64,15 @@ namespace Garage20.Controllers
                     fordon = fordon.OrderByDescending(f => f.RegNr);
                     break;
                 case "Typ":
-                    fordon = fordon.OrderBy(f => f.Typ.ToString());
+                    fordon = fordon.OrderBy(f => f.Fordonstyper.Typ);
                     break;
                 case "Typ_desc":
                     //Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
                     //CultureInfo svSE = new CultureInfo("sv-SE");
-                    
+
                     //fordon = fordon.OrderByDescending(f => f.Typ.ToString(), StringComparer.Create(svSE, false));
 
-                    fordon = fordon.OrderByDescending(f => f.Typ.ToString());
+                    fordon = fordon.OrderByDescending(f => f.Fordonstyper.Typ);
                     break;
                 case "Färg":
                     fordon = fordon.OrderBy(f => f.Färg);
@@ -236,7 +236,7 @@ namespace Garage20.Controllers
             ViewBag.antalFordon = 0;
             foreach (var item in db.Fordons)
             {
-                switch (item.Typ.ToString())
+                switch (item.Fordonstyper.Typ)
                 {
                     case "Bil":
                         ViewBag.bil += 1;

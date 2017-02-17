@@ -21,5 +21,7 @@ namespace Garage20.DAL
         }
 
         public DbSet<Fordon> Fordons { get; set; }
+        public DbSet<Medlem> Medlemmar { get; set; }
+        public DbSet<Fordonstyp> Fordonstyper { get; set; }
     }
 }

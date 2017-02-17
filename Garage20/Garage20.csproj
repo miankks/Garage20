@@ -128,22 +128,21 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Fordons2Controller.cs" />
     <Compile Include="Controllers\FordonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\Garage20Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702101530236_init.cs" />
-    <Compile Include="Migrations\201702101530236_init.Designer.cs">
-      <DependentUpon>201702101530236_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702141310226_init1.cs" />
-    <Compile Include="Migrations\201702141310226_init1.Designer.cs">
-      <DependentUpon>201702141310226_init1.cs</DependentUpon>
+    <Compile Include="Migrations\201702171411183_init.cs" />
+    <Compile Include="Migrations\201702171411183_init.Designer.cs">
+      <DependentUpon>201702171411183_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fordon.cs" />
+    <Compile Include="Models\Fordonstyp.cs" />
+    <Compile Include="Models\Medlem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -189,8 +188,12 @@
     <Content Include="Views\Fordons\Index.cshtml" />
     <Content Include="Views\Fordons\Kvito.cshtml" />
     <Content Include="Views\Fordons\Edit.cshtml" />
-    <Content Include="Views\Fordons\Index.cshtml" />
     <Content Include="Views\Fordons\Stats.cshtml" />
+    <Content Include="Views\Fordons2\Create.cshtml" />
+    <Content Include="Views\Fordons2\Delete.cshtml" />
+    <Content Include="Views\Fordons2\Details.cshtml" />
+    <Content Include="Views\Fordons2\Edit.cshtml" />
+    <Content Include="Views\Fordons2\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -204,11 +207,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702101530236_init.resx">
-      <DependentUpon>201702101530236_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702141310226_init1.resx">
-      <DependentUpon>201702141310226_init1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702171411183_init.resx">
+      <DependentUpon>201702171411183_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -16,10 +16,9 @@ namespace Garage20.Migrations
 
         protected override void Seed(Garage20.DAL.Garage20Context context)
         {
-            var datetime = new DateTime();
-            datetime = DateTime.Now;
-            context.Fordons.AddOrUpdate(p=>p.Id,
-                new Fordon {Tid=datetime, RegNr = "BIL111", Typ = Typ.Bil, Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4 },
+            var datetime = DateTime.Now;
+            /*context.Fordons.AddOrUpdate(p=>p.Id,
+                new Fordon {Tid=datetime, RegNr = "BIL111", Fordonstyper = Typ.Bil, Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4 },
                 new Fordon {Tid=datetime, RegNr = "BIL222", Typ = Typ.Bil, Märke = "Volkswagen", Modell = "Golf", Färg = "Grå", AntalHjul = 4 },
                 new Fordon {Tid=datetime, RegNr = "BIL333", Typ = Typ.Bil, Märke = "Mercedes-Benz", Modell = "220", Färg = "Svart", AntalHjul = 4 },
                 new Fordon {Tid=datetime, RegNr = "BIL444", Typ = Typ.Bil, Märke = "Ferrari", Modell = "Testarossa", Färg = "Röd", AntalHjul = 4 },
@@ -33,7 +32,40 @@ namespace Garage20.Migrations
                 new Fordon {Tid=datetime, RegNr = "MCK222", Typ = Typ.Motorcykel, Märke = "Honda", Modell = "FCX", Färg = "Röd", AntalHjul = 2 },
                 new Fordon {Tid=datetime, RegNr = "MCG333", Typ = Typ.Motorcykel, Märke = "Harley-Davidson", Modell = "Softail", Färg = "Blå", AntalHjul = 2 },
                 new Fordon {Tid=datetime, RegNr = "MCH444", Typ = Typ.Motorcykel, Märke = "Kawasaki", Modell = "ZX-12R", Färg = "Svart", AntalHjul = 2 },
-                new Fordon {Tid=datetime, RegNr = "MCJ555", Typ = Typ.Motorcykel, Märke = "Aprilia", Modell = "RS125", Färg = "Grön", AntalHjul = 3 });
+                new Fordon {Tid=datetime, RegNr = "MCJ555", Typ = Typ.Motorcykel, Märke = "Aprilia", Modell = "RS125", Färg = "Grön", AntalHjul = 3 });*/
+
+            var medlemmar = new[] 
+            {
+                new Medlem { Förnamn="Mikael", Efternamn="Gonzales"},
+                new Medlem { Förnamn="Anna", Efternamn="Anka"},
+                new Medlem { Förnamn="Adam", Efternamn="Andersson"},
+                new Medlem { Förnamn="Bertil", Efternamn="Börjesson"},
+                new Medlem { Förnamn="Christer", Efternamn="Carlsson"},
+            };
+            context.Medlemmar.AddRange(medlemmar);
+            context.SaveChanges();
+
+            var fordonstyper = new[]
+            {
+                new Fordonstyp { Typ="Bil" },
+                new Fordonstyp { Typ="Motorcykel" },
+                new Fordonstyp { Typ="Båt" },
+                new Fordonstyp { Typ="Buss" },
+                new Fordonstyp { Typ="Flygplan" }
+            };
+            context.Fordonstyper.AddRange(fordonstyper);
+            context.SaveChanges();
+
+            var fordon = new[]
+            {
+                new Fordon { MedlemsId=medlemmar[0].MedlemsId,  FordonstypId=fordonstyper[0].FordonstypId , Tid=datetime,  RegNr = "BIL111", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
+                new Fordon { MedlemsId=medlemmar[1].MedlemsId,  FordonstypId=fordonstyper[0].FordonstypId , Tid=datetime,  RegNr = "BIL222", Märke = "Volvo", Modell = "850", Färg = "Gul", AntalHjul = 4},
+                new Fordon { MedlemsId=medlemmar[2].MedlemsId,  FordonstypId=fordonstyper[0].FordonstypId , Tid=datetime,  RegNr = "BIL333", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
+                new Fordon { MedlemsId=medlemmar[3].MedlemsId,  FordonstypId=fordonstyper[0].FordonstypId , Tid=datetime,  RegNr = "BIL444", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
+                new Fordon { MedlemsId=medlemmar[4].MedlemsId,  FordonstypId=fordonstyper[0].FordonstypId , Tid=datetime,  RegNr = "BIL555", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
+            };
+            context.Fordons.AddRange(fordon);
+            context.SaveChanges();
         }
     }
 }

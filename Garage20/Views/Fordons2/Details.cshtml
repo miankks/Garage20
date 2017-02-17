@@ -1,23 +1,37 @@
 ﻿@model Garage20.Models.Fordon
 
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
 <div>
-    <h2>Kvitto</h2>
+    <h4>Fordon</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RegNr)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RegNr)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Fordonstyper.Typ)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Fordonstyper.Typ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medlemmar.Förnamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medlemmar.Förnamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegNr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegNr)
         </dd>
 
         <dt>
@@ -59,30 +73,10 @@
         <dd>
             @Html.DisplayFor(model => model.Tid)
         </dd>
-        <dt>
-            Ut-checkningstid 
-        </dt>
 
-        <dd>
-            @DateTime.Now
-        </dd>
-
-        <dt>
-            Total parkeringsperiod
-        </dt>
-
-        <dd>
-            @ViewBag.currenttime tim  @ViewBag.currentminutes min
-        </dd>
-        <dt>
-            Pris
-        </dt>
-
-        <dd>
-            @ViewBag.price SEK
-        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Tillbaka till Garage 2.0", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>
