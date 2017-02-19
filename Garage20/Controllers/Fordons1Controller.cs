@@ -6,30 +6,30 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Garage20.DAL;
+using Garage2._5.DAL;
 using Garage20.Models;
 
 namespace Garage20.Controllers
 {
-    public class Fordons2Controller : Controller
+    public class Fordons1Controller : Controller
     {
-        private Garage20Context db = new Garage20Context();
+        private FordonContext db = new FordonContext();
 
-        // GET: Fordons2
+        // GET: Fordons1
         public ActionResult Index()
         {
-            var fordons = db.Fordons.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
-            return View(fordons.ToList());
+            var fordon = db.Fordon.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
+            return View(fordon.ToList());
         }
 
-        // GET: Fordons2/Details/5
+        // GET: Fordons1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordon fordon = db.Fordons.Find(id);
+            Fordon fordon = db.Fordon.Find(id);
             if (fordon == null)
             {
                 return HttpNotFound();
@@ -37,15 +37,15 @@ namespace Garage20.Controllers
             return View(fordon);
         }
 
-        // GET: Fordons2/Create
+        // GET: Fordons1/Create
         public ActionResult Create()
         {
-            ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ");
+            ViewBag.FordonstypId = new SelectList(db.Fordonstyp, "FordonstypId", "Typ");
             ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "Förnamn");
             return View();
         }
 
-        // POST: Fordons2/Create
+        // POST: Fordons1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -54,34 +54,34 @@ namespace Garage20.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Fordons.Add(fordon);
+                db.Fordon.Add(fordon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
+            ViewBag.FordonstypId = new SelectList(db.Fordonstyp, "FordonstypId", "Typ", fordon.FordonstypId);
             ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "Förnamn", fordon.MedlemsId);
             return View(fordon);
         }
 
-        // GET: Fordons2/Edit/5
+        // GET: Fordons1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordon fordon = db.Fordons.Find(id);
+            Fordon fordon = db.Fordon.Find(id);
             if (fordon == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
+            ViewBag.FordonstypId = new SelectList(db.Fordonstyp, "FordonstypId", "Typ", fordon.FordonstypId);
             ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "Förnamn", fordon.MedlemsId);
             return View(fordon);
         }
 
-        // POST: Fordons2/Edit/5
+        // POST: Fordons1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -94,19 +94,19 @@ namespace Garage20.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
+            ViewBag.FordonstypId = new SelectList(db.Fordonstyp, "FordonstypId", "Typ", fordon.FordonstypId);
             ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "Förnamn", fordon.MedlemsId);
             return View(fordon);
         }
 
-        // GET: Fordons2/Delete/5
+        // GET: Fordons1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordon fordon = db.Fordons.Find(id);
+            Fordon fordon = db.Fordon.Find(id);
             if (fordon == null)
             {
                 return HttpNotFound();
@@ -114,13 +114,13 @@ namespace Garage20.Controllers
             return View(fordon);
         }
 
-        // POST: Fordons2/Delete/5
+        // POST: Fordons1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Fordon fordon = db.Fordons.Find(id);
-            db.Fordons.Remove(fordon);
+            Fordon fordon = db.Fordon.Find(id);
+            db.Fordon.Remove(fordon);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

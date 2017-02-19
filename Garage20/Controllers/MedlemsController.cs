@@ -6,14 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Garage20.DAL;
+using Garage2._5.DAL;
 using Garage20.Models;
 
 namespace Garage20.Controllers
 {
     public class MedlemsController : Controller
     {
-        private Garage20Context db = new Garage20Context();
+        private FordonContext db = new FordonContext();
 
         // GET: Medlems
         public ActionResult Index()
