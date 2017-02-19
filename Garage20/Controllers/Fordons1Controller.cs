@@ -16,8 +16,25 @@ namespace Garage20.Controllers
         private FordonContext db = new FordonContext();
 
         // GET: Fordons1
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+            var fordon1 = from f in db.Fordon
+                         select f;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                fordon1 = fordon1.Where(s => s.RegNr.Contains(searchString)
+                                        || s.Färg.Contains(searchString)
+                                        || s.Modell.Contains(searchString)
+                                        || s.Märke.Contains(searchString)
+                                        || s.AntalHjul.ToString().Contains(searchString)
+                                        || s.Fordonstyper.Typ.Contains(searchString)
+                                        || s.Tid.ToString().Contains(searchString)
+                                        || s.Medlemmar.Förnamn.Contains(searchString)
+                                        || s.Medlemmar.Efternamn.Contains(searchString)
+
+                                        );
+                return View(fordon1);
+            }
             var fordon = db.Fordon.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
             return View(fordon.ToList());
         }
@@ -112,7 +129,7 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,MedlemsId,FordonstypId")] Fordon fordon)
+        public ActionResult Edit([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
         {
             if (ModelState.IsValid)
             {

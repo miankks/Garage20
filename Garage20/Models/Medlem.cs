@@ -15,7 +15,9 @@ namespace Garage20.Models
         public string Förnamn { get; set; }
         public string Efternamn { get; set; }
         public string FullName { get { return (Förnamn + ", " + Efternamn).Trim(); } }
-       
+        public string adress { get; set; }
+        public string Ort { get; set; }
+        public int AntalBil { get; set; }
         //Navigation property
         public virtual ICollection<Fordon> Fordon { get;set; }
     }

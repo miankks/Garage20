@@ -5,7 +5,13 @@
 }
 
 <h2>Index</h2>
-
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString")
+        <input type="submit" value="Sök" />
+    </p>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -13,17 +19,17 @@
     <tr>
         
         <th>
-            @Html.DisplayNameFor(model => model.Fordonstyper.Typ)
+            @Html.DisplayNameFor(model => model.Medlemmar.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Medlemmar.FullName)
+            @Html.DisplayNameFor(model => model.Fordonstyper.Typ)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RegNr)
         </th>
         
         <th>
-            @Html.DisplayNameFor(model => model.Märke)
+            @Html.DisplayNameFor(model => model.Tid)
         </th>
        
         <th></th>
@@ -33,17 +39,17 @@
     <tr>
         
         <td>
-            @Html.DisplayFor(modelItem => item.Fordonstyper.Typ)
+            @Html.DisplayFor(modelItem => item.Medlemmar.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Medlemmar.FullName)
+            @Html.DisplayFor(modelItem => item.Fordonstyper.Typ)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RegNr)
         </td>
        
         <td>
-            @Html.DisplayFor(modelItem => item.Märke)
+            @Html.DisplayFor(modelItem => item.Tid)
         </td>
        
         <td>
