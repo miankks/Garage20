@@ -16,8 +16,12 @@ namespace Garage20.Controllers
         private FordonContext db = new FordonContext();
 
         // GET: Fordons1
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string sortOrder,string searchString)
         {
+            ViewBag.RegNrSortParm = sortOrder == "RegNr" ? "RegNr_desc" : "RegNr";
+            ViewBag.TypSortParm = sortOrder == "Typ" ? "Typ_desc" : "Typ";
+            ViewBag.FärgSortParm = sortOrder == "Färg" ? "Färg_desc" : "Färg";
+            ViewBag.TidSortParm = sortOrder == "Tid" ? "Tid_desc" : "Tid";
             var fordon1 = from f in db.Fordon
                          select f;
             if (!String.IsNullOrEmpty(searchString))
@@ -34,6 +38,40 @@ namespace Garage20.Controllers
 
                                         );
                 return View(fordon1);
+            }
+            switch (sortOrder)
+            {
+                case "RegNr":
+                    fordon1 = fordon1.OrderBy(f => f.RegNr);
+                    break;
+                case "RegNr_desc":
+                    fordon1 = fordon1.OrderByDescending(f => f.RegNr);
+                    break;
+                case "Typ":
+                    fordon1 = fordon1.OrderBy(f => f.Fordonstyper.Typ);
+                    break;
+                case "Typ_desc":
+                    //Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
+                    //CultureInfo svSE = new CultureInfo("sv-SE");
+
+                    //fordon = fordon.OrderByDescending(f => f.Typ.ToString(), StringComparer.Create(svSE, false));
+
+                    fordon1 = fordon1.OrderByDescending(f => f.Fordonstyper.Typ);
+                    break;
+                case "Färg":
+                    fordon1 = fordon1.OrderBy(f => f.Färg);
+                    break;
+                case "Färg_desc":
+                    fordon1 = fordon1.OrderByDescending(f => f.Färg);
+                    break;
+                case "Tid":
+                    fordon1 = fordon1.OrderBy(f => f.Tid);
+                    break;
+                case "Tid_desc":
+                    fordon1 = fordon1.OrderByDescending(f => f.Tid);
+                    break;
+                default:
+                    break;
             }
             var fordon = db.Fordon.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
             return View(fordon.ToList());

@@ -6,14 +6,15 @@
     <dl class="dl-horizontal">
        
         <dt>
-            @Html.DisplayNameFor(model => model.Tid)
+            @Html.DisplayNameFor(model => model.Tid) :
         </dt>
 
         <dd>
+            @*@Html.DisplayFor(Model=>Model.Tid)*@
             @Html.DisplayFor(model => model.Tid)
         </dd>
         <dt>
-            Ut-checkningstid
+            Ut-checkningstid:
         </dt>
 
         <dd>
@@ -21,14 +22,14 @@
         </dd>
 
         <dt>
-            Total parkeringsperiod
+            Total parkeringsperiod:
         </dt>
 
         <dd>
             @ViewBag.currenttime tim  @ViewBag.currentminutes min
         </dd>
         <dt>
-            Pris
+            Pris:
         </dt>
 
         <dd>

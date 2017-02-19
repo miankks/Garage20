@@ -19,12 +19,15 @@
     <tr>
         
         <th>
+            @*@Html.ActionLink("FUllName", "Index", new { sortOrder = ViewBag.FullNameSortParm, searchString = "" })*@
             @Html.DisplayNameFor(model => model.Medlemmar.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fordonstyper.Typ)
+            @Html.ActionLink("Typ", "Index", new { sortOrder = ViewBag.TypSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.Fordonstyper.Typ)*@
         </th>
         <th>
+            @Html.ActionLink("Registreringsnummer", "Index", new { sortOrder = ViewBag.RegNrSortParm, searchString = "" })
             @Html.DisplayNameFor(model => model.RegNr)
         </th>
         
