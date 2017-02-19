@@ -52,6 +52,32 @@ namespace Garage20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
         {
+            //var findFordon = from m in db.Fordon
+            //                 where fordon.RegNr == m.RegNr
+            //                 select m.RegNr;
+            //if (findFordon.Count() == 0)
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        fordon.Tid = DateTime.Now;
+            //        fordon.RegNr = fordon.RegNr.ToUpper();
+            //        fordon.Färg = fordon.Färg.ToLower();
+            //        fordon.Färg = fordon.Färg.First().ToString().ToUpper() + fordon.Färg.Substring(1); //Stor första bokstav.
+            //        fordon.Märke = fordon.Märke.ToLower();
+            //        fordon.Märke = fordon.Märke.First().ToString().ToUpper() + fordon.Märke.Substring(1); //Stor första bokstav.
+            //        fordon.Modell = fordon.Modell.ToUpper();
+
+            //        db.Fordon.Add(fordon);
+            //        db.SaveChanges();
+            //        ViewBag.error = "";
+            //        return RedirectToAction("Index");
+            //    }
+            //}
+            //else
+            //{
+            //    ViewBag.error = "Registreringsnumret finns redan i garaget!";
+            //}
+            //return View(fordon);
             if (ModelState.IsValid)
             {
                 db.Fordon.Add(fordon);
@@ -86,7 +112,7 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
+        public ActionResult Edit([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,MedlemsId,FordonstypId")] Fordon fordon)
         {
             if (ModelState.IsValid)
             {
@@ -125,6 +151,72 @@ namespace Garage20.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Kvito(Fordon tempfordon)
+        {
+            TimeSpan currenttime = (DateTime.Now - tempfordon.Tid);
+            var price = currenttime.TotalHours * 60;
+            ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
+            ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
+            ViewBag.price = Convert.ToInt32(price);
+            return View(tempfordon);
+        }
+        public ActionResult Stats()
+        {
+            ViewBag.bil = 0;
+            ViewBag.bus = 0;
+            ViewBag.Motorcykel = 0;
+            ViewBag.Båt = 0;
+            ViewBag.Flygplan = 0;
+            ViewBag.antalFordon = 0;
+            foreach (var item in db.Fordon)
+            {
+                switch (item.Fordonstyper.Typ)
+                {
+                    case "Bil":
+                        ViewBag.bil += 1;
+                        ViewBag.antalFordon += 1;
+                        break;
+                    case "Buss":
+                        ViewBag.bus += 1;
+                        ViewBag.antalFordon += 1;
+                        break;
+                    case "Motorcykel":
+                        ViewBag.Motorcykel += 1;
+                        ViewBag.antalFordon += 1;
+                        break;
+                    case "Båt":
+                        ViewBag.Båt += 1;
+                        ViewBag.antalFordon += 1;
+                        break;
+                    case "Flygplan":
+                        ViewBag.Flygplan += 1;
+                        ViewBag.antalFordon += 1;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            ViewBag.TotalHjul = 0;
+
+            foreach (var item in db.Fordon)
+            {
+                ViewBag.TotalHjul = ViewBag.TotalHjul + item.AntalHjul;
+            }
+            ViewBag.TotalTid = 0;
+
+
+            double TotalMinutesOfParking = 0;
+            foreach (var item in db.Fordon)
+            {
+
+                TotalMinutesOfParking = Math.Round(TotalMinutesOfParking + (DateTime.Now - item.Tid).TotalMinutes);
+
+            }
+            ViewBag.count = TotalMinutesOfParking * 1;
+            ViewBag.TotalTid = TotalMinutesOfParking;
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

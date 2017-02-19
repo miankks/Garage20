@@ -192,11 +192,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Fordons1\Create.cshtml" />
-    <Content Include="Views\Fordons1\Delete.cshtml" />
-    <Content Include="Views\Fordons1\Details.cshtml" />
-    <Content Include="Views\Fordons1\Edit.cshtml" />
-    <Content Include="Views\Fordons1\Index.cshtml" />
     <Content Include="Views\Fordonstyps\Create.cshtml" />
     <Content Include="Views\Fordonstyps\Delete.cshtml" />
     <Content Include="Views\Fordonstyps\Details.cshtml" />
@@ -207,6 +202,13 @@
     <Content Include="Views\Medlems\Details.cshtml" />
     <Content Include="Views\Medlems\Edit.cshtml" />
     <Content Include="Views\Medlems\Index.cshtml" />
+    <Content Include="Views\Fordons1\Create.cshtml" />
+    <Content Include="Views\Fordons1\Delete.cshtml" />
+    <Content Include="Views\Fordons1\Details.cshtml" />
+    <Content Include="Views\Fordons1\Edit.cshtml" />
+    <Content Include="Views\Fordons1\Index.cshtml" />
+    <Content Include="Views\Fordons1\Kvito.cshtml" />
+    <Content Include="Views\Fordons1\Stats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
