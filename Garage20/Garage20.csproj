@@ -138,9 +138,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702200911273_initit.cs" />
-    <Compile Include="Migrations\201702200911273_initit.Designer.cs">
-      <DependentUpon>201702200911273_initit.cs</DependentUpon>
+    <Compile Include="Migrations\201702201256456_init.cs" />
+    <Compile Include="Migrations\201702201256456_init.Designer.cs">
+      <DependentUpon>201702201256456_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fordon.cs" />
@@ -209,6 +209,11 @@
     <Content Include="Views\Fordonstyps\Edit.cshtml" />
     <Content Include="Views\Fordonstyps\Index.cshtml" />
     <Content Include="Views\Fordons\Kvitto.cshtml" />
+    <Content Include="Views\Detaljer\Create.cshtml" />
+    <Content Include="Views\Detaljer\Delete.cshtml" />
+    <Content Include="Views\Detaljer\Details.cshtml" />
+    <Content Include="Views\Detaljer\Edit.cshtml" />
+    <Content Include="Views\Detaljer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -222,8 +227,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702200911273_initit.resx">
-      <DependentUpon>201702200911273_initit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702201256456_init.resx">
+      <DependentUpon>201702201256456_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
