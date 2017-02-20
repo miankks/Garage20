@@ -6,28 +6,11 @@
 
 <h2>Detaljerad översiktsvy för fordon</h2>
 
-@*<div>
-    @using (Html.BeginForm("Details", "Fordons", FormMethod.Get))
-    {
-        <p>
-            <br />
-            @Html.DropDownList("Alternative")
-            @Html.TextBox("SearchString")
-            <input type="submit" value="Sök" />
-        </p>
-    }
-</div>*@
+
 <p>
     @Html.ActionLink("Parkera fordon", "Create")
 </p>
 
-@*@using (Html.BeginForm())
-{
-    <p>
-        @Html.TextBox("SearchString")
-        <input type="submit" value="Sök" />
-    </p>
-}*@
 
 <div>
     <hr />

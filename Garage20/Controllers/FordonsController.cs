@@ -84,25 +84,7 @@ namespace Garage20.Controllers
             return View(fordon);
         }
 
-        /*public ActionResult Details(string searchString, string alternative)
-        {
-            var fordon = db.Fordons.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
-
-            ViewBag.alternative = new SelectList(new List<string>() { "Registreringsnummer", "Fordonstyp" });
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                if (!string.IsNullOrEmpty(alternative))
-                {
-                    if (alternative == "Registreringsnummer")
-                        fordon = fordon.Where(s => s.RegNr.Contains(searchString));
-                    else if (alternative == "Fordonstyp")
-                        fordon = fordon.Where(s => s.Fordonstyper.Typ.Contains(searchString));
-                }
-            }
-            return View(fordon);
-        }*/
-
+       
         // GET: Fordons/Create
         public ActionResult Create()
         {
@@ -117,7 +99,6 @@ namespace Garage20.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
-        //public ActionResult Create([Bind(Include = "RegNr,Typ,Färg,Märke,Modell,AntalHjul")] Fordon fordon)
         {
             var findFordon = from m in db.Fordons
                              where fordon.RegNr == m.RegNr
@@ -173,7 +154,6 @@ namespace Garage20.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
-        //public ActionResult Edit([Bind(Include = "Id,RegNr,Typ,Färg,Märke,Modell,AntalHjul,Tid")] Fordon fordon)
         {
             if (ModelState.IsValid)
             {
@@ -214,16 +194,12 @@ namespace Garage20.Controllers
         public ActionResult DeleteConfirmed(int? id)
         {
             var fordon = db.Fordons
-                .Include(f => f.Fordonstyper)
-                .Include(f => f.Medlemmar)
+                //.Include(f => f.Fordonstyper)
+                //.Include(f => f.Medlemmar)
                 .SingleOrDefault(x => x.Id == id);
 
             TimeSpan currenttime = (DateTime.Now - fordon.Tid);
-            //var price = currenttime.TotalHours * 60;
-            //ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
-            //ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
-            //ViewBag.price = Convert.ToInt32(price);
-
+          
             var kvitto = new KvittoViewModel();
             kvitto.Ankomsttid = fordon.Tid;
             kvitto.Namn = fordon.Medlemmar.FullständigtNamn;
@@ -232,24 +208,14 @@ namespace Garage20.Controllers
             kvitto.Utcheckningstid = DateTime.Now;
             ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
             ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
-            //Fordon fordon = db.Fordons.Find(id);
-            //  Fordon tempfordon = fordon;
-            //tempfordon.Medlemmar.Förnamn = fordon.Medlemmar.FullständigtNamn;
+           
             db.Fordons.Remove(fordon);
             db.SaveChanges();
             //return RedirectToAction("Kvito",kvitto);
             return View("Kvitto",kvitto);
         }
 
-        /*public ActionResult Kvito(Fordon tempfordon)
-        {
-            TimeSpan currenttime = (DateTime.Now - tempfordon.Tid);
-            var price = currenttime.TotalHours * 60;
-            ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
-            ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
-            ViewBag.price = Convert.ToInt32(price);
-            return View(tempfordon);
-        }*/
+       
         // [HttpGet]
         public ActionResult Stats()
         {

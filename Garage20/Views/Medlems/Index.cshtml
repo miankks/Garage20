@@ -20,16 +20,10 @@
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.Förnamn)*@
             @Html.ActionLink("Förnamn", "Index", new { sortOrder = ViewBag.FörnamnSortParm, searchString = "" })
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Efternamn)*@
             @Html.ActionLink("Efternamn", "Index", new { sortOrder = ViewBag.EfternamnSortParm, searchString = "" })
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Efternamn)*@
-            @Html.ActionLink("FullständigtNamn", "Index", new { sortOrder = ViewBag.FullständigtNamnSortParm, searchString = "" })
         </th>
         <th></th>
     </tr>
@@ -42,10 +36,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Efternamn)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullständigtNamn)
-        </td>
-        <td>
+         <td>
             @Html.ActionLink("Redigera medlem", "Edit", new { id=item.MedlemsId }) |
             @Html.ActionLink("Detaljvy för medlem", "Details", new { id=item.MedlemsId }) |
             @Html.ActionLink("Avsluta medlemskap", "Delete", new { id=item.MedlemsId })
