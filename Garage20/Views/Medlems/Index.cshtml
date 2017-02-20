@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Garage20.Models.Medlem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Medlemsregister</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString")
+        <input type="submit" value="Sök" />
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Bli medlem", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Förnamn)*@
+            @Html.ActionLink("Förnamn", "Index", new { sortOrder = ViewBag.FörnamnSortParm, searchString = "" })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Efternamn)*@
+            @Html.ActionLink("Efternamn", "Index", new { sortOrder = ViewBag.EfternamnSortParm, searchString = "" })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Förnamn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Efternamn)
+        </td>
+        <td>
+            @Html.ActionLink("Redigera medlem", "Edit", new { id=item.MedlemsId }) |
+            @Html.ActionLink("Detaljvy för medlem", "Details", new { id=item.MedlemsId }) |
+            @Html.ActionLink("Avsluta medlemskap", "Delete", new { id=item.MedlemsId })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Tillbaka till medlemsregistret", "Index")
+</div>

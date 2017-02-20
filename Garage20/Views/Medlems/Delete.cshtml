@@ -1,0 +1,38 @@
+﻿@model Garage20.Models.Medlem
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Avsluta medlemskap</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Förnamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Förnamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Efternamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Efternamn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Avsluta medlemskap nu" class="btn btn-default" /> |
+            @Html.ActionLink("Tillbaka till medlemsregistret", "Index")
+        </div>
+    }
+</div>

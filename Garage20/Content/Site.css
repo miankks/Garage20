@@ -25,20 +25,20 @@ textarea{
 
 
 .navbar-inverse {
-    background-color: burlywood;
+    background-color: #88d4f8;
     border-color: black;
 }
 
-    .navbar-inverse .navbar-brand {
-        color: black;
-    }
+.navbar-inverse .navbar-brand {
+    color: black;
+}
 
 .navbar-inverse .navbar-nav > li > a {
     color: black;
 }
 
 tr:nth-child(2n-1){
-    background-color:lightgray;
+    background-color:#e5f8f8;
 }
 tr:nth-child(2n){
     background-color:azure;

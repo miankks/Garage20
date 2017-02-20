@@ -9,33 +9,29 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.RegNr)
+            @Html.DisplayNameFor(model => model.Medlemmar.FullständigtNamn)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.RegNr)
+            @Html.DisplayFor(model => model.Medlemmar.FullständigtNamn)
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Fordonstyper.Typ)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Fordonstyper.Typ)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Färg)
+            @Html.DisplayNameFor(model => model.RegNr)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Färg)
+            @Html.DisplayFor(model => model.RegNr)
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Märke)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Märke)
         </dd>
@@ -43,17 +39,29 @@
         <dt>
             @Html.DisplayNameFor(model => model.Modell)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Modell)
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Färg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Färg)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.AntalHjul)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.AntalHjul)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tid)
         </dd>
 
     </dl>
@@ -63,7 +71,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Hämta ut" class="btn btn-default" /> |
-            @Html.ActionLink("Tillbaka till Garage 2.0", "Index")
+            @Html.ActionLink("Tillbaka till Översiktsvy för fordon", "Index")
         </div>
     }
 </div>

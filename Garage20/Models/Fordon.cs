@@ -7,15 +7,6 @@ using System.Web;
 
 namespace Garage20.Models
 {
-    //public enum Typ
-    //{
-    //    Bil,
-    //    Buss, 
-    //    Motorcykel,
-    //    Båt, 
-    //    Flygplan
-    //}
-
     public class Fordon
     {
         public int Id { get; set; }
@@ -24,8 +15,6 @@ namespace Garage20.Models
         //[RegularExpression(pattern: "^[a-zA-Z]{3}[0-9]{3}", ErrorMessage = "Mata in 3 bokstäver och 3 siffror!")]
         //[DisplayName("Registreringsnummer")]
         public string RegNr { get; set; }
-
-        //public Typ Typ { get; set; }
 
         //[Required(ErrorMessage = "Fältet Färg krävs!")]
         //[RegularExpression(@"^[a-zA-ZåäöÅÄÖ\-\s*]+$", ErrorMessage = "Mata in endast bokstäver!")]
@@ -45,6 +34,7 @@ namespace Garage20.Models
         //[Required(ErrorMessage = "Fältet Antal hjul krävs!")]
         //[Range(0, 30)]
         //[DisplayName("Antal hjul")]
+        //Skapa valideringstext för antal hjul.
         public int AntalHjul { get; set; }
 
         //[DisplayName("In-checkningstid")]

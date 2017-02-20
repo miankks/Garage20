@@ -8,8 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using Garage20.DAL;
 using Garage20.Models;
-using System.Globalization;
-using System.Threading;
 
 namespace Garage20.Controllers
 {
@@ -17,42 +15,26 @@ namespace Garage20.Controllers
     {
         private Garage20Context db = new Garage20Context();
 
-        // GET: Fordons
-        /*public ActionResult Index(string searchString)
+        public ActionResult Index(string sortOrder, string searchString, string alternative)
         {
-            var model = from m in db.Fordons
-                         select m;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                model = model.Where(s => s.RegNr.Contains(searchString));
-                return View(model);
-            }
-
-            return View(db.Fordons.ToList());
-        }*/
-
-        public ActionResult Index(string sortOrder, string searchString)
-        {
-            ViewBag.RegNrSortParm = sortOrder == "RegNr" ? "RegNr_desc" : "RegNr";
+            ViewBag.ÄgareSortParm = sortOrder == "Ägare" ? "Ägare_desc" : "Ägare";
             ViewBag.TypSortParm = sortOrder == "Typ" ? "Typ_desc" : "Typ";
-            ViewBag.FärgSortParm = sortOrder == "Färg" ? "Färg_desc" : "Färg";
+            ViewBag.RegNrSortParm = sortOrder == "RegNr" ? "RegNr_desc" : "RegNr";
             ViewBag.TidSortParm = sortOrder == "Tid" ? "Tid_desc" : "Tid";
-            var fordon = from f in db.Fordons
-                         select f;
-            //IQueryable<Fordon> fordon = db.Fordons;
+
+            var fordon = db.Fordons.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
+
+            ViewBag.alternative = new SelectList(new List<string>() { "Registreringsnummer", "Fordonstyp" });
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                fordon = fordon.Where(s => s.RegNr.Contains(searchString)
-                                        || s.Färg.Contains(searchString)
-                                        || s.Modell.Contains(searchString)
-                                        || s.Märke.Contains(searchString)
-                                        || s.AntalHjul.ToString().Contains(searchString)
-                                        || s.Fordonstyper.Typ.Contains(searchString)
-                                        || s.Tid.ToString().Contains(searchString)
-                                        );
-                return View(fordon);
+                if (!string.IsNullOrEmpty(alternative))
+                {
+                    if(alternative == "Registreringsnummer")
+                        fordon = fordon.Where(s => s.RegNr.Contains(searchString));
+                    else if (alternative == "Fordonstyp")
+                        fordon = fordon.Where(s => s.Fordonstyper.Typ.Contains(searchString));
+                }
             }
 
             switch (sortOrder)
@@ -67,18 +49,13 @@ namespace Garage20.Controllers
                     fordon = fordon.OrderBy(f => f.Fordonstyper.Typ);
                     break;
                 case "Typ_desc":
-                    //Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
-                    //CultureInfo svSE = new CultureInfo("sv-SE");
-
-                    //fordon = fordon.OrderByDescending(f => f.Typ.ToString(), StringComparer.Create(svSE, false));
-
                     fordon = fordon.OrderByDescending(f => f.Fordonstyper.Typ);
                     break;
-                case "Färg":
-                    fordon = fordon.OrderBy(f => f.Färg);
+                case "Ägare":
+                    fordon = fordon.OrderBy(f => f.Medlemmar.Efternamn).ThenBy(f => f.Medlemmar.Förnamn);
                     break;
-                case "Färg_desc":
-                    fordon = fordon.OrderByDescending(f => f.Färg);
+                case "Ägare_desc":
+                    fordon = fordon.OrderByDescending(f => f.Medlemmar.Efternamn).ThenByDescending(f => f.Medlemmar.Förnamn);
                     break;
                 case "Tid":
                     fordon = fordon.OrderBy(f => f.Tid);
@@ -89,7 +66,6 @@ namespace Garage20.Controllers
                 default:
                     break;
             }
-
             return View(fordon.ToList());
         }
 
@@ -108,9 +84,30 @@ namespace Garage20.Controllers
             return View(fordon);
         }
 
+        /*public ActionResult Details(string searchString, string alternative)
+        {
+            var fordon = db.Fordons.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
+
+            ViewBag.alternative = new SelectList(new List<string>() { "Registreringsnummer", "Fordonstyp" });
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                if (!string.IsNullOrEmpty(alternative))
+                {
+                    if (alternative == "Registreringsnummer")
+                        fordon = fordon.Where(s => s.RegNr.Contains(searchString));
+                    else if (alternative == "Fordonstyp")
+                        fordon = fordon.Where(s => s.Fordonstyper.Typ.Contains(searchString));
+                }
+            }
+            return View(fordon);
+        }*/
+
         // GET: Fordons/Create
         public ActionResult Create()
         {
+            ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ");
+            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn");
             return View();
         }
 
@@ -119,7 +116,8 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RegNr,Typ,Färg,Märke,Modell,AntalHjul")] Fordon fordon)
+        public ActionResult Create([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
+        //public ActionResult Create([Bind(Include = "RegNr,Typ,Färg,Märke,Modell,AntalHjul")] Fordon fordon)
         {
             var findFordon = from m in db.Fordons
                              where fordon.RegNr == m.RegNr
@@ -146,8 +144,10 @@ namespace Garage20.Controllers
             {
                 ViewBag.error = "Registreringsnumret finns redan i garaget!";
             }
-                return View(fordon);
 
+            ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
+            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn", fordon.MedlemsId);
+            return View(fordon);
         }
 
         // GET: Fordons/Edit/5
@@ -162,6 +162,8 @@ namespace Garage20.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
+            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn", fordon.MedlemsId);
             return View(fordon);
         }
 
@@ -170,7 +172,8 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegNr,Typ,Färg,Märke,Modell,AntalHjul,Tid")] Fordon fordon)
+        public ActionResult Edit([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
+        //public ActionResult Edit([Bind(Include = "Id,RegNr,Typ,Färg,Märke,Modell,AntalHjul,Tid")] Fordon fordon)
         {
             if (ModelState.IsValid)
             {
@@ -185,6 +188,8 @@ namespace Garage20.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
+            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn", fordon.MedlemsId);
             return View(fordon);
         }
 
@@ -208,8 +213,12 @@ namespace Garage20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            
-            Fordon fordon = db.Fordons.Find(id);
+            var fordon = db.Fordons
+                .Include(f => f.Fordonstyper)
+                .Include(f => f.Medlemmar)
+                .SingleOrDefault(x => x.Id == id);
+
+            //Fordon fordon = db.Fordons.Find(id);
             Fordon tempfordon = fordon;
             db.Fordons.Remove(fordon);
             db.SaveChanges();

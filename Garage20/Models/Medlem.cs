@@ -14,6 +14,7 @@ namespace Garage20.Models
         public int MedlemsId { get; set; }
         public string Förnamn { get; set; }
         public string Efternamn { get; set; }
+        public string FullständigtNamn { get { return (Förnamn + " " + Efternamn).Trim(); } }
 
         //Navigation property
         public virtual ICollection<Fordon> Fordon { get; set; }

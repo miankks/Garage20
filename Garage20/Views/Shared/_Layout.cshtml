@@ -16,9 +16,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Garage 2.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Garage 2.5", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Fordon", "Index", "Fordons", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Fordonsstatistik", "Stats", "Fordons", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Medlemmar", "Index", "Medlems", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Fordon2", "Index", "Fordons2", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Fodonstyper", "Index", "Fordonstyps", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -34,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Joachim, Bilal och Dildar</p>
+            <p>&copy; @DateTime.Now.Year - Joachim och Bilal.</p>
         </footer>
     </div>
 

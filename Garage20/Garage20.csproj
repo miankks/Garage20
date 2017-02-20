@@ -130,7 +130,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Fordons2Controller.cs" />
     <Compile Include="Controllers\FordonsController.cs" />
+    <Compile Include="Controllers\FordonstypsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MedlemsController.cs" />
     <Compile Include="DAL\Garage20Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,6 +196,16 @@
     <Content Include="Views\Fordons2\Details.cshtml" />
     <Content Include="Views\Fordons2\Edit.cshtml" />
     <Content Include="Views\Fordons2\Index.cshtml" />
+    <Content Include="Views\Medlems\Create.cshtml" />
+    <Content Include="Views\Medlems\Delete.cshtml" />
+    <Content Include="Views\Medlems\Details.cshtml" />
+    <Content Include="Views\Medlems\Edit.cshtml" />
+    <Content Include="Views\Medlems\Index.cshtml" />
+    <Content Include="Views\Fordonstyps\Create.cshtml" />
+    <Content Include="Views\Fordonstyps\Delete.cshtml" />
+    <Content Include="Views\Fordonstyps\Details.cshtml" />
+    <Content Include="Views\Fordonstyps\Edit.cshtml" />
+    <Content Include="Views\Fordonstyps\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
