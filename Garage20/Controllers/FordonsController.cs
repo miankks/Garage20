@@ -230,7 +230,8 @@ namespace Garage20.Controllers
             kvitto.RegNr = fordon.RegNr;
             kvitto.Kostnad = (int)currenttime.TotalMinutes;
             kvitto.Utcheckningstid = DateTime.Now;
-
+            ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
+            ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
             //Fordon fordon = db.Fordons.Find(id);
             //  Fordon tempfordon = fordon;
             //tempfordon.Medlemmar.Förnamn = fordon.Medlemmar.FullständigtNamn;

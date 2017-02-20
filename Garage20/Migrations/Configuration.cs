@@ -42,18 +42,18 @@ namespace Garage20.Migrations
                 new Medlem { Förnamn="Bertil", Efternamn="Börjesson"},
                 new Medlem { Förnamn="Christer", Efternamn="Carlsson"},
             };
-            context.Medlemmar.AddRange(medlemmar);
+            context.Medlemmar.AddOrUpdate(m => m.Förnamn, medlemmar);
             context.SaveChanges();
 
             var fordonstyper = new[]
             {
                 new Fordonstyp { Typ="Bil" },
                 new Fordonstyp { Typ="Motorcykel" },
-                new Fordonstyp { Typ="Båt" },
                 new Fordonstyp { Typ="Buss" },
+                new Fordonstyp { Typ="Båt" },
                 new Fordonstyp { Typ="Flygplan" }
             };
-            context.Fordonstyper.AddRange(fordonstyper);
+            context.Fordonstyper.AddOrUpdate(f => f.Typ, fordonstyper);
             context.SaveChanges();
 
             var fordon = new[]
@@ -64,7 +64,7 @@ namespace Garage20.Migrations
                 new Fordon { MedlemsId=medlemmar[3].MedlemsId,  FordonstypId=fordonstyper[3].FordonstypId , Tid=datetime,  RegNr = "BIL444", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
                 new Fordon { MedlemsId=medlemmar[4].MedlemsId,  FordonstypId=fordonstyper[4].FordonstypId , Tid=datetime,  RegNr = "BIL555", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
             };
-            context.Fordons.AddRange(fordon);
+            context.Fordons.AddOrUpdate(f => f.RegNr, fordon);
             context.SaveChanges();
         }
     }

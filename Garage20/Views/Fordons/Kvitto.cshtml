@@ -12,7 +12,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Namn)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Namn)
         </dd>
@@ -20,7 +19,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.RegNr)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.RegNr)
         </dd>
@@ -28,7 +26,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Ankomsttid)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Ankomsttid)
         </dd>
@@ -36,15 +33,21 @@
         <dt>
             @Html.DisplayNameFor(model => model.Utcheckningstid)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Utcheckningstid)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Kostnad)
+            Total parkeringsperiod
         </dt>
 
+        <dd>
+            @ViewBag.currenttime tim  @ViewBag.currentminutes min
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kostnad)
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.Kostnad) SEK
         </dd>
