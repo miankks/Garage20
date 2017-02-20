@@ -218,14 +218,29 @@ namespace Garage20.Controllers
                 .Include(f => f.Medlemmar)
                 .SingleOrDefault(x => x.Id == id);
 
+            TimeSpan currenttime = (DateTime.Now - fordon.Tid);
+            //var price = currenttime.TotalHours * 60;
+            //ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
+            //ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
+            //ViewBag.price = Convert.ToInt32(price);
+
+            var kvitto = new KvittoViewModel();
+            kvitto.Ankomsttid = fordon.Tid;
+            kvitto.Namn = fordon.Medlemmar.FullständigtNamn;
+            kvitto.RegNr = fordon.RegNr;
+            kvitto.Kostnad = (int)currenttime.TotalMinutes;
+            kvitto.Utcheckningstid = DateTime.Now;
+
             //Fordon fordon = db.Fordons.Find(id);
-            Fordon tempfordon = fordon;
+            //  Fordon tempfordon = fordon;
+            //tempfordon.Medlemmar.Förnamn = fordon.Medlemmar.FullständigtNamn;
             db.Fordons.Remove(fordon);
             db.SaveChanges();
-            return RedirectToAction("Kvito",tempfordon);
+            //return RedirectToAction("Kvito",kvitto);
+            return View("Kvitto",kvitto);
         }
 
-        public ActionResult Kvito(Fordon tempfordon)
+        /*public ActionResult Kvito(Fordon tempfordon)
         {
             TimeSpan currenttime = (DateTime.Now - tempfordon.Tid);
             var price = currenttime.TotalHours * 60;
@@ -233,7 +248,7 @@ namespace Garage20.Controllers
             ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
             ViewBag.price = Convert.ToInt32(price);
             return View(tempfordon);
-        }
+        }*/
         // [HttpGet]
         public ActionResult Stats()
         {
