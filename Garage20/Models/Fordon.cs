@@ -33,9 +33,8 @@ namespace Garage20.Models
         public string Modell { get; set; }
 
         [Required(ErrorMessage = "Fältet Antal hjul krävs!")]
-        [Range(0, 30)]
+        [Range(0, 30, ErrorMessage = "Mata in ett tal mellan 0 och 30!")]
         [DisplayName("Antal hjul")]
-        //Skapa valideringstext för antal hjul.
         public int AntalHjul { get; set; }
 
         [DisplayName("In-checkningstid")]

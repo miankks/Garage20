@@ -32,8 +32,8 @@ namespace Garage20.Migrations
             {
                 new Fordonstyp { Typ="Bil" },
                 new Fordonstyp { Typ="Motorcykel" },
-                new Fordonstyp { Typ="Båt" },
                 new Fordonstyp { Typ="Buss" },
+                new Fordonstyp { Typ="Båt" },
                 new Fordonstyp { Typ="Flygplan" }
             };
             context.Fordonstyper.AddOrUpdate(m => m.Typ, fordonstyper);
@@ -41,11 +41,11 @@ namespace Garage20.Migrations
 
             var fordon = new[]
             {
-                new Fordon { MedlemsId=medlemmar[0].MedlemsId,  FordonstypId=fordonstyper[0].FordonstypId , Tid=datetime,  RegNr = "BIL111", Märke = "Volvo", Modell = "S40", Färg = "Röd", AntalHjul = 4},
-                new Fordon { MedlemsId=medlemmar[1].MedlemsId,  FordonstypId=fordonstyper[1].FordonstypId , Tid=datetime,  RegNr = "Mot345", Märke = "Saab", Modell = "850", Färg = "Gul", AntalHjul = 5},
-                new Fordon { MedlemsId=medlemmar[2].MedlemsId,  FordonstypId=fordonstyper[2].FordonstypId , Tid=datetime,  RegNr = "Las333", Märke = "Audi", Modell = "A7", Färg = "Vit", AntalHjul = 8},
-                new Fordon { MedlemsId=medlemmar[3].MedlemsId,  FordonstypId=fordonstyper[3].FordonstypId , Tid=datetime,  RegNr = "Zer444", Märke = "Honda", Modell = "Civic", Färg = "Silver", AntalHjul = 3},
-                new Fordon { MedlemsId=medlemmar[4].MedlemsId,  FordonstypId=fordonstyper[4].FordonstypId , Tid=datetime,  RegNr = "Fly555", Märke = "BMW", Modell = "550", Färg = "Svart", AntalHjul = 9},
+                new Fordon { MedlemsId=medlemmar[0].MedlemsId,  FordonstypId=fordonstyper[0].FordonstypId , Tid=datetime,  RegNr = "BIL111", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
+                new Fordon { MedlemsId=medlemmar[1].MedlemsId,  FordonstypId=fordonstyper[1].FordonstypId , Tid=datetime,  RegNr = "BIL222", Märke = "Volvo", Modell = "850", Färg = "Gul", AntalHjul = 4},
+                new Fordon { MedlemsId=medlemmar[2].MedlemsId,  FordonstypId=fordonstyper[2].FordonstypId , Tid=datetime,  RegNr = "BIL333", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
+                new Fordon { MedlemsId=medlemmar[3].MedlemsId,  FordonstypId=fordonstyper[3].FordonstypId , Tid=datetime,  RegNr = "BIL444", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
+                new Fordon { MedlemsId=medlemmar[4].MedlemsId,  FordonstypId=fordonstyper[4].FordonstypId , Tid=datetime,  RegNr = "BIL555", Märke = "Volvo", Modell = "850", Färg = "Röd", AntalHjul = 4},
             };
             context.Fordons.AddOrUpdate(m => m.RegNr, fordon);
             context.SaveChanges();
