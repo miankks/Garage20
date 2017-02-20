@@ -6,19 +6,55 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Garage2._5.DAL;
+using Garage20.DAL;
 using Garage20.Models;
 
 namespace Garage20.Controllers
 {
     public class MedlemsController : Controller
     {
-        private FordonContext db = new FordonContext();
+        private Garage20Context db = new Garage20Context();
 
         // GET: Medlems
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             return View(db.Medlemmar.ToList());
+        }*/
+
+        public ActionResult Index(string sortOrder, string searchString)
+        {
+            ViewBag.FörnamnSortParm = sortOrder == "Förnamn" ? "Förnamn_desc" : "Förnamn";
+            ViewBag.EfternamnSortParm = sortOrder == "Efternamn" ? "Efternamn_desc" : "Efternamn";
+            var medlemmar = from m in db.Medlemmar
+                            select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                medlemmar = medlemmar.Where(s => s.Förnamn.Contains(searchString)
+                                              || s.Efternamn.Contains(searchString));
+
+                return View(medlemmar);
+            }
+
+            switch (sortOrder)
+            {
+                case "Förnamn":
+                    medlemmar = medlemmar.OrderBy(m => m.Förnamn).ThenBy(m => m.Efternamn);
+                    break;
+                case "Förnamn_desc":
+                    medlemmar = medlemmar.OrderByDescending(m => m.Förnamn).ThenByDescending(m => m.Efternamn);
+                    break;
+                case "Efternamn":
+                    medlemmar = medlemmar.OrderBy(m => m.Efternamn).ThenBy(m => m.Förnamn);
+                    break;
+                case "Efternamn_desc":
+                    medlemmar = medlemmar.OrderByDescending(m => m.Efternamn).ThenByDescending(m => m.Förnamn);
+                    break;
+                default:
+                    break;
+            }
+
+            return View(medlemmar.ToList());
         }
 
         // GET: Medlems/Details/5

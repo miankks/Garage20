@@ -11,15 +11,20 @@ using Garage20.Models;
 
 namespace Garage20.Controllers
 {
-    public class FordonsController : Controller
+    public class DetaljerController : Controller
     {
         private Garage20Context db = new Garage20Context();
 
+        // GET: Detaljer
         public ActionResult Index(string sortOrder, string searchString, string alternative)
         {
             ViewBag.ÄgareSortParm = sortOrder == "Ägare" ? "Ägare_desc" : "Ägare";
             ViewBag.TypSortParm = sortOrder == "Typ" ? "Typ_desc" : "Typ";
             ViewBag.RegNrSortParm = sortOrder == "RegNr" ? "RegNr_desc" : "RegNr";
+            ViewBag.FärgSortParm = sortOrder == "Färg" ? "Färg_desc" : "Färg";
+            ViewBag.MärkeSortParm = sortOrder == "Märke" ? "Märke_desc" : "Märke";
+            ViewBag.ModellSortParm = sortOrder == "Modell" ? "Modell_desc" : "Modell";
+            ViewBag.AntalHjulSortParm = sortOrder == "AntalHjul" ? "AntalHjul_desc" : "AntalHjul";
             ViewBag.TidSortParm = sortOrder == "Tid" ? "Tid_desc" : "Tid";
 
             var fordon = db.Fordons.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
@@ -30,7 +35,7 @@ namespace Garage20.Controllers
             {
                 if (!string.IsNullOrEmpty(alternative))
                 {
-                    if(alternative == "Registreringsnummer")
+                    if (alternative == "Registreringsnummer")
                         fordon = fordon.Where(s => s.RegNr.Contains(searchString));
                     else if (alternative == "Fordonstyp")
                         fordon = fordon.Where(s => s.Fordonstyper.Typ.Contains(searchString));
@@ -45,6 +50,24 @@ namespace Garage20.Controllers
                 case "RegNr_desc":
                     fordon = fordon.OrderByDescending(f => f.RegNr);
                     break;
+                case "Färg":
+                    fordon = fordon.OrderBy(f => f.Färg);
+                    break;
+                case "Färg_desc":
+                    fordon = fordon.OrderByDescending(f => f.Färg);
+                    break;
+                case "Märke":
+                    fordon = fordon.OrderBy(f => f.Märke);
+                    break;
+                case "Märke_desc":
+                    fordon = fordon.OrderByDescending(f => f.Märke);
+                    break;
+                case "Modell":
+                    fordon = fordon.OrderBy(f => f.Modell);
+                    break;
+                case "Modell_desc":
+                    fordon = fordon.OrderByDescending(f => f.Modell);
+                    break;
                 case "Typ":
                     fordon = fordon.OrderBy(f => f.Fordonstyper.Typ);
                     break;
@@ -52,10 +75,17 @@ namespace Garage20.Controllers
                     fordon = fordon.OrderByDescending(f => f.Fordonstyper.Typ);
                     break;
                 case "Ägare":
+                   
                     fordon = fordon.OrderBy(f => f.Medlemmar.Förnamn).ThenBy(f => f.Medlemmar.Efternamn);
                     break;
                 case "Ägare_desc":
                     fordon = fordon.OrderByDescending(f => f.Medlemmar.Förnamn).ThenByDescending(f => f.Medlemmar.Efternamn);
+                    break;
+                case "AntalHjul":
+                    fordon = fordon.OrderBy(f => f.AntalHjul);
+                    break;
+                case "AntalHjul_desc":
+                    fordon = fordon.OrderByDescending(f => f.AntalHjul);
                     break;
                 case "Tid":
                     fordon = fordon.OrderBy(f => f.Tid);
@@ -67,9 +97,11 @@ namespace Garage20.Controllers
                     break;
             }
             return View(fordon.ToList());
+            var fordons = db.Fordons.Include(f => f.Fordonstyper).Include(f => f.Medlemmar);
+            return View(fordons.ToList());
         }
 
-        // GET: Fordons/Details/5
+        // GET: Detaljer/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -84,54 +116,34 @@ namespace Garage20.Controllers
             return View(fordon);
         }
 
-       
-        // GET: Fordons/Create
+        // GET: Detaljer/Create
         public ActionResult Create()
         {
             ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ");
-            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn");
+            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "Förnamn");
             return View();
         }
 
-        // POST: Fordons/Create
+        // POST: Detaljer/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
         {
-            var findFordon = from m in db.Fordons
-                             where fordon.RegNr == m.RegNr
-                             select m.RegNr;
-            if (findFordon.Count() == 0)
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    fordon.Tid = DateTime.Now;
-                    fordon.RegNr = fordon.RegNr.ToUpper();
-                    fordon.Färg = fordon.Färg.ToLower();
-                    fordon.Färg = fordon.Färg.First().ToString().ToUpper() + fordon.Färg.Substring(1); //Stor första bokstav.
-                    fordon.Märke = fordon.Märke.ToLower();
-                    fordon.Märke = fordon.Märke.First().ToString().ToUpper() + fordon.Märke.Substring(1); //Stor första bokstav.
-                    fordon.Modell = fordon.Modell.ToUpper();
-
-                    db.Fordons.Add(fordon);
-                    db.SaveChanges();
-                    ViewBag.error = "";
-                    return RedirectToAction("Index");
-                }
-            }
-            else
-            {
-                ViewBag.error = "Registreringsnumret finns redan i garaget!";
+                db.Fordons.Add(fordon);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
-            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn", fordon.MedlemsId);
+            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "Förnamn", fordon.MedlemsId);
             return View(fordon);
         }
 
-        // GET: Fordons/Edit/5
+        // GET: Detaljer/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -144,11 +156,11 @@ namespace Garage20.Controllers
                 return HttpNotFound();
             }
             ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
-            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn", fordon.MedlemsId);
+            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "Förnamn", fordon.MedlemsId);
             return View(fordon);
         }
 
-        // POST: Fordons/Edit/5
+        // POST: Detaljer/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -157,23 +169,16 @@ namespace Garage20.Controllers
         {
             if (ModelState.IsValid)
             {
-                fordon.RegNr = fordon.RegNr.ToUpper();
-                fordon.Färg = fordon.Färg.ToLower();
-                fordon.Färg = fordon.Färg.First().ToString().ToUpper() + fordon.Färg.Substring(1); //Stor första bokstav.
-                fordon.Märke = fordon.Märke.ToLower();
-                fordon.Märke = fordon.Märke.First().ToString().ToUpper() + fordon.Märke.Substring(1); //Stor första bokstav.
-                fordon.Modell = fordon.Modell.ToUpper();
-                
                 db.Entry(fordon).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
-            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn", fordon.MedlemsId);
+            ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "Förnamn", fordon.MedlemsId);
             return View(fordon);
         }
 
-        // GET: Fordons/Delete/5
+        // GET: Detaljer/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -188,92 +193,17 @@ namespace Garage20.Controllers
             return View(fordon);
         }
 
-        // POST: Fordons/Delete/5
+        // POST: Detaljer/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            var fordon = db.Fordons
-                //.Include(f => f.Fordonstyper)
-                //.Include(f => f.Medlemmar)
-                .SingleOrDefault(x => x.Id == id);
-
-            TimeSpan currenttime = (DateTime.Now - fordon.Tid);
-          
-            var kvitto = new KvittoViewModel();
-            kvitto.Ankomsttid = fordon.Tid;
-            kvitto.Namn = fordon.Medlemmar.FullständigtNamn;
-            kvitto.RegNr = fordon.RegNr;
-            kvitto.Kostnad = (int)currenttime.TotalMinutes;
-            kvitto.Utcheckningstid = DateTime.Now;
-            ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
-            ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
-           
+            Fordon fordon = db.Fordons.Find(id);
             db.Fordons.Remove(fordon);
             db.SaveChanges();
-            //return RedirectToAction("Kvito",kvitto);
-            return View("Kvitto",kvitto);
+            return RedirectToAction("Index");
         }
 
-       
-        // [HttpGet]
-        public ActionResult Stats()
-        {
-            ViewBag.bil = 0;
-            ViewBag.bus = 0;
-            ViewBag.Motorcykel = 0;
-            ViewBag.Båt = 0;
-            ViewBag.Flygplan = 0;
-            ViewBag.antalFordon = 0;
-            foreach (var item in db.Fordons)
-            {
-                switch (item.Fordonstyper.Typ)
-                {
-                    case "Bil":
-                        ViewBag.bil += 1;
-                        ViewBag.antalFordon += 1;
-                        break;
-                    case "Buss":
-                        ViewBag.bus += 1;
-                        ViewBag.antalFordon += 1;
-                        break;
-                    case "Motorcykel":
-                        ViewBag.Motorcykel += 1;
-                        ViewBag.antalFordon += 1;
-                        break;
-                    case "Båt":
-                        ViewBag.Båt += 1;
-                        ViewBag.antalFordon += 1;
-                        break;
-                    case "Flygplan":
-                        ViewBag.Flygplan += 1;
-                        ViewBag.antalFordon += 1;
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-            ViewBag.TotalHjul = 0;
-
-            foreach (var item in db.Fordons)
-            {
-                ViewBag.TotalHjul = ViewBag.TotalHjul + item.AntalHjul;
-            }
-            ViewBag.TotalTid = 0;
-
-
-            double TotalMinutesOfParking = 0;
-            foreach (var item in db.Fordons)
-            {
-
-                TotalMinutesOfParking = Math.Round(TotalMinutesOfParking + (DateTime.Now - item.Tid).TotalMinutes);
-
-            }
-            ViewBag.count = TotalMinutesOfParking * 1;
-            ViewBag.TotalTid = TotalMinutesOfParking;
-            return View();
-        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

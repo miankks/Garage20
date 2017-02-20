@@ -12,10 +12,10 @@ namespace Garage20.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        RegNr = c.String(),
-                        Färg = c.String(),
-                        Märke = c.String(),
-                        Modell = c.String(),
+                        RegNr = c.String(nullable: false),
+                        Färg = c.String(nullable: false, maxLength: 30),
+                        Märke = c.String(nullable: false, maxLength: 30),
+                        Modell = c.String(nullable: false, maxLength: 30),
                         AntalHjul = c.Int(nullable: false),
                         Tid = c.DateTime(nullable: false),
                         MedlemsId = c.Int(nullable: false),
@@ -32,7 +32,7 @@ namespace Garage20.Migrations
                 c => new
                     {
                         FordonstypId = c.Int(nullable: false, identity: true),
-                        Typ = c.String(),
+                        Typ = c.String(nullable: false, maxLength: 30),
                     })
                 .PrimaryKey(t => t.FordonstypId);
             
@@ -41,8 +41,8 @@ namespace Garage20.Migrations
                 c => new
                     {
                         MedlemsId = c.Int(nullable: false, identity: true),
-                        Förnamn = c.String(),
-                        Efternamn = c.String(),
+                        Förnamn = c.String(nullable: false, maxLength: 30),
+                        Efternamn = c.String(nullable: false, maxLength: 30),
                     })
                 .PrimaryKey(t => t.MedlemsId);
             

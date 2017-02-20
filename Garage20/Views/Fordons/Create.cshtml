@@ -17,27 +17,28 @@
         <div class="alert-danger" role="alert">@ViewBag.error</div>
         
         <div class="form-group">
+            @Html.LabelFor(model => model.MedlemsId, "MedlemsId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MedlemsId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MedlemsId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FordonstypId, "FordonstypId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("FordonstypId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FordonstypId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.RegNr, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RegNr, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RegNr, "", new { @class = "text-danger" })
             </div>
            
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Typ, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Typ, htmlAttributes: new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Färg, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Färg, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Färg, "", new { @class = "text-danger" })
-            </div>
         </div>
 
         <div class="form-group">
@@ -53,6 +54,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Modell, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Modell, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Färg, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Färg, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Färg, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -73,7 +82,7 @@
 }
 
 <div>
-    @Html.ActionLink("Tillbaka till Garage 2.0", "Index")
+    @Html.ActionLink("Tillbaka till Översiktsvy för fordon", "Index")
 </div>
 
 @section Scripts {

@@ -4,10 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Översiktsvy för fordon</h2>
-
+<h2>Detaljerad översiktsvy för fordon</h2>
 <div>
-    @using (Html.BeginForm("Index", "Fordons", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Detaljer", FormMethod.Get))
     {
         <p>
             <br />
@@ -17,11 +16,9 @@
         </p>
     }
 </div>
-<p>
-    @Html.ActionLink("Parkera fordon", "Create")
-</p>
-
-
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -34,9 +31,20 @@
             @Html.ActionLink("Registreringsnummer", "Index", new { sortOrder = ViewBag.RegNrSortParm, searchString = "" })
         </th>
         <th>
+            @Html.ActionLink("Färg", "Index", new { sortOrder = ViewBag.FärgSortParm, searchString = "" })
+        </th>
+        <th>
+            @Html.ActionLink("Märke", "Index", new { sortOrder = ViewBag.MärkeSortParm, searchString = "" })
+        </th>
+        <th>
+            @Html.ActionLink("Modell", "Index", new { sortOrder = ViewBag.ModellSortParm, searchString = "" })
+        </th>
+        <th>
+            @Html.ActionLink("AntalHjul", "Index", new { sortOrder = ViewBag.AntalHjulSortParm, searchString = "" })
+        </th>
+        <th>
             @Html.ActionLink("In-checkningstid", "Index", new { sortOrder = ViewBag.TidSortParm, searchString = "" })
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -51,19 +59,23 @@
             @Html.DisplayFor(modelItem => item.RegNr)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Färg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Märke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AntalHjul)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Tid)
         </td>
-
-        <td>
-            @Html.ActionLink("Redigera fordon", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Detaljvy för fordon", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Hämta ut fordon", "Delete", new { id = item.Id })
-        </td>
+       
     </tr>
 }
 
 </table>
 
-<div>
-    @Html.ActionLink("Tillbaka till Översiktsvy för fordon", "Index")
-</div>
