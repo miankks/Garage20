@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DetaljerController.cs" />
     <Compile Include="Controllers\Fordons2Controller.cs" />
     <Compile Include="Controllers\FordonsController.cs" />
     <Compile Include="Controllers\FordonstypsController.cs" />
@@ -137,9 +138,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702171411183_init.cs" />
-    <Compile Include="Migrations\201702171411183_init.Designer.cs">
-      <DependentUpon>201702171411183_init.cs</DependentUpon>
+    <Compile Include="Migrations\201702200911273_initit.cs" />
+    <Compile Include="Migrations\201702200911273_initit.Designer.cs">
+      <DependentUpon>201702200911273_initit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fordon.cs" />
@@ -206,6 +207,11 @@
     <Content Include="Views\Fordonstyps\Details.cshtml" />
     <Content Include="Views\Fordonstyps\Edit.cshtml" />
     <Content Include="Views\Fordonstyps\Index.cshtml" />
+    <Content Include="Views\Detaljer\Create.cshtml" />
+    <Content Include="Views\Detaljer\Delete.cshtml" />
+    <Content Include="Views\Detaljer\Details.cshtml" />
+    <Content Include="Views\Detaljer\Edit.cshtml" />
+    <Content Include="Views\Detaljer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -219,8 +225,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702171411183_init.resx">
-      <DependentUpon>201702171411183_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702200911273_initit.resx">
+      <DependentUpon>201702200911273_initit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

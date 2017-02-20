@@ -110,6 +110,7 @@ namespace Garage20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
             Fordonstyp fordonstyp = db.Fordonstyper.Find(id);
             db.Fordonstyper.Remove(fordonstyp);
             db.SaveChanges();

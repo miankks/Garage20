@@ -114,15 +114,32 @@ namespace Garage20.Controllers
             return View(fordon);
         }
 
-        // POST: Fordons2/Delete/5
+        // POST: Fordons/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
-            Fordon fordon = db.Fordons.Find(id);
+            var fordon = db.Fordons
+                .Include(f => f.Fordonstyper)
+                .Include(f => f.Medlemmar)
+                .SingleOrDefault(x => x.Id == id);
+
+            //Fordon fordon = db.Fordons.Find(id);
+            Fordon tempfordon = fordon;
             db.Fordons.Remove(fordon);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Kvito", tempfordon);
+        }
+
+        public ActionResult Kvito(Fordon tempfordon)
+        {
+            ViewBag.FullständigtNamn = ViewBag.FullständigtNamn;
+            TimeSpan currenttime = (DateTime.Now - tempfordon.Tid);
+            var price = currenttime.TotalHours * 60;
+            ViewBag.currenttime = Convert.ToInt32(currenttime.Hours);
+            ViewBag.currentminutes = Convert.ToInt32(currenttime.Minutes);
+            ViewBag.price = Convert.ToInt32(price);
+            return View(tempfordon);
         }
 
         protected override void Dispose(bool disposing)

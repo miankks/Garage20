@@ -27,6 +27,10 @@
             @*@Html.DisplayNameFor(model => model.Efternamn)*@
             @Html.ActionLink("Efternamn", "Index", new { sortOrder = ViewBag.EfternamnSortParm, searchString = "" })
         </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Efternamn)*@
+            @Html.ActionLink("FullständigtNamn", "Index", new { sortOrder = ViewBag.FullständigtNamnSortParm, searchString = "" })
+        </th>
         <th></th>
     </tr>
 
@@ -37,6 +41,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Efternamn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullständigtNamn)
         </td>
         <td>
             @Html.ActionLink("Redigera medlem", "Edit", new { id=item.MedlemsId }) |

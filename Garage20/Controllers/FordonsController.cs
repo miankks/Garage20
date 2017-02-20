@@ -52,10 +52,10 @@ namespace Garage20.Controllers
                     fordon = fordon.OrderByDescending(f => f.Fordonstyper.Typ);
                     break;
                 case "Ägare":
-                    fordon = fordon.OrderBy(f => f.Medlemmar.Efternamn).ThenBy(f => f.Medlemmar.Förnamn);
+                    fordon = fordon.OrderBy(f => f.Medlemmar.Förnamn).ThenBy(f => f.Medlemmar.Efternamn);
                     break;
                 case "Ägare_desc":
-                    fordon = fordon.OrderByDescending(f => f.Medlemmar.Efternamn).ThenByDescending(f => f.Medlemmar.Förnamn);
+                    fordon = fordon.OrderByDescending(f => f.Medlemmar.Förnamn).ThenByDescending(f => f.Medlemmar.Efternamn);
                     break;
                 case "Tid":
                     fordon = fordon.OrderBy(f => f.Tid);
