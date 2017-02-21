@@ -155,18 +155,28 @@ namespace Garage20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,RegNr,Färg,Märke,Modell,AntalHjul,Tid,MedlemsId,FordonstypId")] Fordon fordon)
         {
-            if (ModelState.IsValid)
+            var findFordon = from m in db.Fordons
+                             where fordon.RegNr == m.RegNr
+                             select m.RegNr;
+            if (findFordon.Count() == 0)
             {
-                fordon.RegNr = fordon.RegNr.ToUpper();
-                fordon.Färg = fordon.Färg.ToLower();
-                fordon.Färg = fordon.Färg.First().ToString().ToUpper() + fordon.Färg.Substring(1); //Stor första bokstav.
-                fordon.Märke = fordon.Märke.ToLower();
-                fordon.Märke = fordon.Märke.First().ToString().ToUpper() + fordon.Märke.Substring(1); //Stor första bokstav.
-                fordon.Modell = fordon.Modell.ToUpper();
-                
-                db.Entry(fordon).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    fordon.RegNr = fordon.RegNr.ToUpper();
+                    fordon.Färg = fordon.Färg.ToLower();
+                    fordon.Färg = fordon.Färg.First().ToString().ToUpper() + fordon.Färg.Substring(1); //Stor första bokstav.
+                    fordon.Märke = fordon.Märke.ToLower();
+                    fordon.Märke = fordon.Märke.First().ToString().ToUpper() + fordon.Märke.Substring(1); //Stor första bokstav.
+                    fordon.Modell = fordon.Modell.ToUpper();
+
+                    db.Entry(fordon).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                ViewBag.error = "Registreringsnumret finns redan i garaget!";
             }
             ViewBag.FordonstypId = new SelectList(db.Fordonstyper, "FordonstypId", "Typ", fordon.FordonstypId);
             ViewBag.MedlemsId = new SelectList(db.Medlemmar, "MedlemsId", "FullständigtNamn", fordon.MedlemsId);

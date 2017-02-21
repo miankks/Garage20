@@ -13,6 +13,8 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="alert-danger" role="alert">@ViewBag.error</div>
+
         @Html.HiddenFor(model => model.Id)
         
         <div class="form-group">
