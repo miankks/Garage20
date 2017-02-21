@@ -15,13 +15,16 @@ namespace Garage20.Controllers
     {
         private Garage20Context db = new Garage20Context();
 
-        
+        // GET: Medlems
+        /*public ActionResult Index()
+        {
+            return View(db.Medlemmar.ToList());
+        }*/
 
         public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.FörnamnSortParm = sortOrder == "Förnamn" ? "Förnamn_desc" : "Förnamn";
             ViewBag.EfternamnSortParm = sortOrder == "Efternamn" ? "Efternamn_desc" : "Efternamn";
-           // ViewBag.FullständigtNamnSortParm = sortOrder == "FullständigtNamn" ? "FullständigtNamn_desc" : "FullständigtNamn";
             var medlemmar = from m in db.Medlemmar
                             select m;
 
@@ -30,7 +33,6 @@ namespace Garage20.Controllers
                 medlemmar = medlemmar.Where(s => s.Förnamn.Contains(searchString)
                                               || s.Efternamn.Contains(searchString));
 
-                //medlemmar = medlemmar.OrderBy(m => m.Förnamn).ThenBy(m => m.Efternamn).ThenBy(m=>m.FullständigtNamn);
                 return View(medlemmar);
             }
 

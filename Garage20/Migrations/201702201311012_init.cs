@@ -32,7 +32,7 @@ namespace Garage20.Migrations
                 c => new
                     {
                         FordonstypId = c.Int(nullable: false, identity: true),
-                        Typ = c.String(),
+                        Typ = c.String(nullable: false, maxLength: 30),
                     })
                 .PrimaryKey(t => t.FordonstypId);
             
@@ -41,8 +41,8 @@ namespace Garage20.Migrations
                 c => new
                     {
                         MedlemsId = c.Int(nullable: false, identity: true),
-                        Förnamn = c.String(),
-                        Efternamn = c.String(),
+                        Förnamn = c.String(nullable: false, maxLength: 30),
+                        Efternamn = c.String(nullable: false, maxLength: 30),
                     })
                 .PrimaryKey(t => t.MedlemsId);
             

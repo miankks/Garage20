@@ -21,33 +21,19 @@
     @Html.ActionLink("Parkera fordon", "Create")
 </p>
 
-@*@using (Html.BeginForm())
-{
-    <p>
-        @Html.TextBox("SearchString")
-        <input type="submit" value="Sök" />
-    </p>
-}
-<p>
-    @Html.ActionLink("Parkera fordon", "Create")
-</p>*@
 
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.Medlemmar.FullständigtNamn)*@
             @Html.ActionLink("Ägare", "Index", new { sortOrder = ViewBag.ÄgareSortParm, searchString = "" })
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Fordonstyper.Typ)*@
             @Html.ActionLink("Fordonstyp", "Index", new { sortOrder = ViewBag.TypSortParm, searchString = "" })
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.RegNr)*@
             @Html.ActionLink("Registreringsnummer", "Index", new { sortOrder = ViewBag.RegNrSortParm, searchString = "" })
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Tid)*@
             @Html.ActionLink("In-checkningstid", "Index", new { sortOrder = ViewBag.TidSortParm, searchString = "" })
         </th>
         <th></th>
@@ -70,7 +56,7 @@
 
         <td>
             @Html.ActionLink("Redigera fordon", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Detaljerad översiktsvy för fordon", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Detaljvy för fordon", "Details", new { id = item.Id }) |
             @Html.ActionLink("Hämta ut fordon", "Delete", new { id = item.Id })
         </td>
     </tr>
