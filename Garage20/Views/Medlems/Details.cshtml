@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detaljvy för medlem</h2>
 
 <div>
-    <h4>Medlem</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,24 +24,10 @@
         <dd>
             @Html.DisplayFor(model => model.Efternamn)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.adress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adress)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Ort)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ort)
-        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MedlemsId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Redigera medlem", "Edit", new { id = Model.MedlemsId }) |
+    @Html.ActionLink("Tillbaka till medlemsregistret", "Index")
 </p>

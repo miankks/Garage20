@@ -4,9 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<br />
+<h2>Översiktsvy för fordon</h2>
 
-@using (Html.BeginForm())
+<div>
+    @using (Html.BeginForm("Index", "Fordons", FormMethod.Get))
+    {
+        <p>
+            <br />
+            @Html.DropDownList("Alternative")
+            @Html.TextBox("SearchString")
+            <input type="submit" value="Sök" />
+        </p>
+    }
+</div>
+<p>
+    @Html.ActionLink("Parkera fordon", "Create")
+</p>
+
+@*@using (Html.BeginForm())
 {
     <p>
         @Html.TextBox("SearchString")
@@ -15,25 +30,25 @@
 }
 <p>
     @Html.ActionLink("Parkera fordon", "Create")
-</p>
+</p>*@
 
 <table class="table">
     <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Medlemmar.FullständigtNamn)*@
+            @Html.ActionLink("Ägare", "Index", new { sortOrder = ViewBag.ÄgareSortParm, searchString = "" })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Fordonstyper.Typ)*@
+            @Html.ActionLink("Fordonstyp", "Index", new { sortOrder = ViewBag.TypSortParm, searchString = "" })
+        </th>
         <th>
             @*@Html.DisplayNameFor(model => model.RegNr)*@
             @Html.ActionLink("Registreringsnummer", "Index", new { sortOrder = ViewBag.RegNrSortParm, searchString = "" })
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Typ)*@
-            @Html.ActionLink("Typ", "Index", new { sortOrder = ViewBag.TypSortParm, searchString = "" })
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Färg)*@
-            @Html.ActionLink("Färg", "Index", new { sortOrder = ViewBag.FärgSortParm, searchString = "" })
-        </th>
-        <th>
             @*@Html.DisplayNameFor(model => model.Tid)*@
-            @Html.ActionLink("Tid", "Index", new { sortOrder = ViewBag.TidSortParm, searchString = "" })
+            @Html.ActionLink("In-checkningstid", "Index", new { sortOrder = ViewBag.TidSortParm, searchString = "" })
         </th>
         <th></th>
     </tr>
@@ -41,13 +56,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.RegNr)
+            @Html.DisplayFor(modelItem => item.Medlemmar.FullständigtNamn)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Fordonstyper.Typ)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Färg)
+            @Html.DisplayFor(modelItem => item.RegNr)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Tid)
@@ -55,7 +70,7 @@
 
         <td>
             @Html.ActionLink("Redigera fordon", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Detaljvy för fordon", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Detaljerad översiktsvy för fordon", "Details", new { id = item.Id }) |
             @Html.ActionLink("Hämta ut fordon", "Delete", new { id = item.Id })
         </td>
     </tr>
@@ -64,5 +79,5 @@
 </table>
 
 <div>
-    @Html.ActionLink("Tillbaka till Garage 2.0", "Index")
+    @Html.ActionLink("Tillbaka till Översiktsvy för fordon", "Index")
 </div>

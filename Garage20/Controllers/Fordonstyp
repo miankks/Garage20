@@ -6,19 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Garage20.DAL;
+using Garage2._5.DAL;
 using Garage20.Models;
 
 namespace Garage20.Controllers
 {
     public class FordonstypsController : Controller
     {
-        private Garage20Context db = new Garage20Context();
+        private FordonContext db = new FordonContext();
 
         // GET: Fordonstyps
         public ActionResult Index()
         {
-            return View(db.Fordonstyper.ToList());
+            return View(db.Fordonstyp.ToList());
         }
 
         // GET: Fordonstyps/Details/5
@@ -28,7 +28,7 @@ namespace Garage20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordonstyp fordonstyp = db.Fordonstyper.Find(id);
+            Fordonstyp fordonstyp = db.Fordonstyp.Find(id);
             if (fordonstyp == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace Garage20.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Fordonstyper.Add(fordonstyp);
+                db.Fordonstyp.Add(fordonstyp);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace Garage20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordonstyp fordonstyp = db.Fordonstyper.Find(id);
+            Fordonstyp fordonstyp = db.Fordonstyp.Find(id);
             if (fordonstyp == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace Garage20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordonstyp fordonstyp = db.Fordonstyper.Find(id);
+            Fordonstyp fordonstyp = db.Fordonstyp.Find(id);
             if (fordonstyp == null)
             {
                 return HttpNotFound();
@@ -110,9 +110,8 @@ namespace Garage20.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-
-            Fordonstyp fordonstyp = db.Fordonstyper.Find(id);
-            db.Fordonstyper.Remove(fordonstyp);
+            Fordonstyp fordonstyp = db.Fordonstyp.Find(id);
+            db.Fordonstyp.Remove(fordonstyp);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

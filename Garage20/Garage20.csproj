@@ -128,21 +128,24 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\Fordons1Controller.cs" />
+    <Compile Include="Controllers\DetaljerController.cs" />
+    <Compile Include="Controllers\Fordons2Controller.cs" />
+    <Compile Include="Controllers\FordonsController.cs" />
     <Compile Include="Controllers\FordonstypsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MedlemsController.cs" />
-    <Compile Include="DAL\FordonContext.cs" />
+    <Compile Include="DAL\Garage20Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702191304264_fordonint.cs" />
-    <Compile Include="Migrations\201702191304264_fordonint.Designer.cs">
-      <DependentUpon>201702191304264_fordonint.cs</DependentUpon>
+    <Compile Include="Migrations\201702201256456_init.cs" />
+    <Compile Include="Migrations\201702201256456_init.Designer.cs">
+      <DependentUpon>201702201256456_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fordon.cs" />
     <Compile Include="Models\Fordonstyp.cs" />
+    <Compile Include="Models\KvittoViewModel.cs" />
     <Compile Include="Models\Medlem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -169,16 +172,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Fordons\Create.cshtml" />
-    <Content Include="Views\Fordons\Delete.cshtml" />
-    <Content Include="Views\Fordons\Details.cshtml" />
-    <Content Include="Views\Fordons\Edit.cshtml" />
-    <Content Include="Views\Fordons\Index.cshtml" />
-    <Content Include="Views\Fordons\Kvito.cshtml" />
-    <Content Include="Views\Fordons\Stats.cshtml" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -192,27 +186,37 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Fordonstyps\Create.cshtml" />
-    <Content Include="Views\Fordonstyps\Delete.cshtml" />
-    <Content Include="Views\Fordonstyps\Details.cshtml" />
-    <Content Include="Views\Fordonstyps\Edit.cshtml" />
-    <Content Include="Views\Fordonstyps\Index.cshtml" />
+    <Content Include="Views\Fordons\Create.cshtml" />
+    <Content Include="Views\Fordons\Delete.cshtml" />
+    <Content Include="Views\Fordons\Details.cshtml" />
+    <Content Include="Views\Fordons\Index.cshtml" />
+    <Content Include="Views\Fordons\Kvito.cshtml" />
+    <Content Include="Views\Fordons\Edit.cshtml" />
+    <Content Include="Views\Fordons\Stats.cshtml" />
+    <Content Include="Views\Fordons2\Create.cshtml" />
+    <Content Include="Views\Fordons2\Delete.cshtml" />
+    <Content Include="Views\Fordons2\Details.cshtml" />
+    <Content Include="Views\Fordons2\Edit.cshtml" />
+    <Content Include="Views\Fordons2\Index.cshtml" />
     <Content Include="Views\Medlems\Create.cshtml" />
     <Content Include="Views\Medlems\Delete.cshtml" />
     <Content Include="Views\Medlems\Details.cshtml" />
     <Content Include="Views\Medlems\Edit.cshtml" />
     <Content Include="Views\Medlems\Index.cshtml" />
-    <Content Include="Views\Fordons1\Create.cshtml" />
-    <Content Include="Views\Fordons1\Delete.cshtml" />
-    <Content Include="Views\Fordons1\Details.cshtml" />
-    <Content Include="Views\Fordons1\Edit.cshtml" />
-    <Content Include="Views\Fordons1\Index.cshtml" />
-    <Content Include="Views\Fordons1\Kvito.cshtml" />
-    <Content Include="Views\Fordons1\Stats.cshtml" />
+    <Content Include="Views\Fordonstyps\Create.cshtml" />
+    <Content Include="Views\Fordonstyps\Delete.cshtml" />
+    <Content Include="Views\Fordonstyps\Details.cshtml" />
+    <Content Include="Views\Fordonstyps\Edit.cshtml" />
+    <Content Include="Views\Fordonstyps\Index.cshtml" />
+    <Content Include="Views\Fordons\Kvitto.cshtml" />
+    <Content Include="Views\Detaljer\Create.cshtml" />
+    <Content Include="Views\Detaljer\Delete.cshtml" />
+    <Content Include="Views\Detaljer\Details.cshtml" />
+    <Content Include="Views\Detaljer\Edit.cshtml" />
+    <Content Include="Views\Detaljer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\FordonStatistiks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -223,8 +227,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702191304264_fordonint.resx">
-      <DependentUpon>201702191304264_fordonint.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702201256456_init.resx">
+      <DependentUpon>201702201256456_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

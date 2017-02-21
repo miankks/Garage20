@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Garage20.Models.Fordon>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Fordon Detaljer</h2>
+<div>
+    @using (Html.BeginForm("Index", "Detaljer", FormMethod.Get))
+    {
+        <p>
+            <br />
+            @Html.DropDownList("Alternative")
+            @Html.TextBox("SearchString")
+            <input type="submit" value="Sök" />
+        </p>
+    }
+</div>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Ägare", "Index", new { sortOrder = ViewBag.ÄgareSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.Medlemmar.FullständigtNamn)*@
+        </th>
+        <th>
+            @Html.ActionLink("Fordonstyp", "Index", new { sortOrder = ViewBag.TypSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.Fordonstyper.Typ)*@
+        </th>
+        <th>
+            @Html.ActionLink("Registreringsnummer", "Index", new { sortOrder = ViewBag.RegNrSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.RegNr)*@
+        </th>
+        <th>
+            @Html.ActionLink("Färg", "Index", new { sortOrder = ViewBag.FärgSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.Färg)*@
+        </th>
+        <th>
+            @Html.ActionLink("Märke", "Index", new { sortOrder = ViewBag.MärkeSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.Märke)*@
+        </th>
+        <th>
+            @Html.ActionLink("Modell", "Index", new { sortOrder = ViewBag.ModellSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.Modell)*@
+        </th>
+        <th>
+            @Html.ActionLink("AntalHjul", "Index", new { sortOrder = ViewBag.AntalHjulSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.AntalHjul)*@
+        </th>
+        <th>
+            @Html.ActionLink("In-checkningstid", "Index", new { sortOrder = ViewBag.TidSortParm, searchString = "" })
+            @*@Html.DisplayNameFor(model => model.Tid)*@
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medlemmar.FullständigtNamn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fordonstyper.Typ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegNr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Färg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Märke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AntalHjul)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tid)
+        </td>
+       
+    </tr>
+}
+
+</table>

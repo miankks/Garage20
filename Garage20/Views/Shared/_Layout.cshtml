@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Garage2.5</title>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -16,20 +16,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Garage 2.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Garage 2.5", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Fordon", "Index", "Fordons", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Fordonsstatistik", "Stats", "Fordons", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Medlemmar", "Index", "Medlems", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Fordonstyp", "Index", "Fordonstyps", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Fordon", "Index", "Fordons1", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Fordonsstatistik", "Stats", "Fordons1", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Detaljer", "Index", "Detaljer", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Fodonstyper", "Index", "Fordonstyps", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Garage 2.0", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Medlemmar", "Index", "Medlems")</li>
-                    <li>@Html.ActionLink("Fordonstyp", "Index", "Fordonstyps")</li>
-                    <li>@Html.ActionLink("Fordon", "Index", "Fordons1")</li>
-                    <li>@Html.ActionLink("Fordonsstatistik", "Stats", "Fordons1")</li>*@
-
+                    @*<li>@Html.ActionLink("Hem", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Om oss", "About", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Fordon", "Index", "Fordons")</li>*@
                 </ul>
             </div>
         </div>
@@ -38,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Joachim och Bilal</p>
+            <p>&copy; @DateTime.Now.Year - Joachim och Bilal.</p>
         </footer>
     </div>
 
